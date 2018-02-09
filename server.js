@@ -11,8 +11,7 @@ var logger          = require('morgan'),
 var app = express();
 
 
-consle.log(aaaa);
-
+console.log('test');
 
 dotenv.load();
 
