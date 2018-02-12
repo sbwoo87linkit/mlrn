@@ -1,16 +1,68 @@
+
+<!-- 
+<div class="container">
+    <h2>Tabs in a Grid</h2>
+
+    <div class="w3-row">
+        <a href="javascript:void(0)" onclick="openCity(event, 'London');">
+            <div class="w3-third tablink w3-green w3-bottombar w3-hover-light-grey w3-padding w3-center">London</div>
+        </a>
+        <a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
+            <div class="w3-third tablink w3-blue w3-bottombar w3-hover-light-grey w3-padding w3-right-align">Paris</div>
+        </a>
+        <a href="javascript:void(0)" onclick="openCity(event, 'Tokyo');">
+            <div class="w3-third tablink w3-pink w3-bottombar  w3-hover-light-grey w3-padding">Tokyo</div>
+        </a>
+    </div>
+
+    <div id="London" class="w3-container city" style="display:none">
+        <h2>London</h2>
+        <p>London is the capital city of England.</p>
+    </div>
+
+    <div id="Paris" class="w3-container city" style="display:none">
+        <h2>Paris</h2>
+        <p>Paris is the capital of France.</p>
+    </div>
+
+    <div id="Tokyo" class="w3-container city" style="display:none">
+        <h2>Tokyo</h2>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
+</div>
+
+<script>
+    function openCity(evt, cityName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("city");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.firstElementChild.className += " w3-border-red";
+    }
+</script>
+ -->
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             <div class="row w3-theme-text" style="border-bottom: 2px solid #A2734F; margin:20px 0">
                 <div class="col-md-8" style="font-size: 30px">MLRN ACTIVITIES</div>
                 <div class="col-md-4 text-right" style="margin-top: 20px;">
-                    <a ui-sref="board.list({'main_menu':'news', 'sub_menu':'mlrnactivites', title:'MLRN ACTIVITIE', 'board_type' : 'board'})"> more <i class="far fa-plus-square"></i></a>
+                    <a ui-sref="board.list({'main_menu':'news', 'sub_menu':'mlrn activities', title:'MLRN ACTIVITIE', 'board_type' : 'board'})"> more <i class="far fa-plus-square"></i></a>
                     
                 </div>
             </div>
 
 
-            <div  style="height: 300px; overflow:hidden" id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+            <!-- {{slides}} -->
+            <div ng-if="slides.length"  style="height: 300px; overflow:hidden" id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
                 <ol class="carousel-indicators">
                     <!-- <li ng-repeat="slide in slides track by slide.id" data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active:!$index}"></li> -->
                     <li ng-repeat="slide in slides track by $index" data-target="#myCarousel" data-slide-to="{{$index}}" ng-class="{active:!$index}"></li>

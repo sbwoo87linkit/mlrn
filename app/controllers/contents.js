@@ -26,6 +26,7 @@ mongoClient.connect(config.connectionString, function (err, database) {
 
 exports.list = function (req, res) {
 
+
     async.waterfall([
         function (callback) {
             db.collection('board').count({
@@ -71,18 +72,6 @@ exports.list = function (req, res) {
 
 exports.view = function (req, res) {
     db.collection('board').findOne({ _id: ObjectID(req.params.sid) }, function(err, doc) {        
-        if (!err) {
-            res.json(doc);
-        }
-        res.status(500).end(err);
-    });
-}
-
-
-//'/board/page/' + articleType
-
-exports.pageview = function (req, res) {
-    db.collection('board').findOne({ 'articleType': req.params.articleType }, function (err, doc) {
         if (!err) {
             res.json(doc);
         }
@@ -167,9 +156,3 @@ exports.delete = function (req, res) {
     });
 
 }
-
-// db.getCollection('votes').insertMany( [
-//     {issue_id:1020, age:'21~', gender:'male', created: new Date(), 'choice':'yes'},
-//     {issue_id:1020, age:'21~', gender:'male', created: new Date(), 'choice':'yes'},
-//     {issue_id:1020, age:'21~', gender:'male', created: new Date(), 'choice':'yes'}
-// ] );
