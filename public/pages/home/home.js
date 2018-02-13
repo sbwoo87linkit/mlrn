@@ -5,7 +5,7 @@ app.controller('home.ctrl', function ($scope, boardService, config) {
 
 
 
-    $scope.apiUrl = config.apiUrl;
+    $scope.apiUrl = vm.appContext.apiUrl;
     $scope.myInterval = 3000;
     $scope.noWrapSlides = false;
     $scope.active = 0;

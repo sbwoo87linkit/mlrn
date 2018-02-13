@@ -30,7 +30,7 @@ app.controller('signup.ctrl', function($scope, $rootScope, $state, $stateParams,
 
         // return;
 
-         $http.post(config.apiUrl + '/user/signup', user).then(function (res) {
+         $http.post(vm.appContext.apiUrl + '/user/signup', user).then(function (res) {
 
             $state.go('signin')
 

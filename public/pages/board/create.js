@@ -54,13 +54,13 @@ app.controller('board.create.ctrl', function ($scope, $window, $rootScope, $stat
 
     vm.isUploading = false;
 
-    vm.fileChanged = function (element) {
+    $scope.fileChanged = function (element) {
 
         vm.isUploading = true;
         var file = element.files[0];
         var fd = new FormData();
         fd.append('file', file);
-        $http.post(config.apiUrl + '/api/files/', fd, {
+        $http.post(vm.appContext.apiUrl + '/api/files/', fd, {
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
         }).then(function (res) {
@@ -72,27 +72,6 @@ app.controller('board.create.ctrl', function ($scope, $window, $rootScope, $stat
             console.log("error", err)
         });
     };
-
-    // vm.fileChanged = function (element) {
-
-    //     vm.isUploading = true;
-    //     vm.$apply(function (scope) {
-    //         var file = element.files[0];
-    //         var fd = new FormData();
-    //         fd.append('file', file);
-    //         $http.post(config.apiUrl + '/api/files/', fd, {
-    //             transformRequest: angular.identity,
-    //             headers: { 'Content-Type': undefined }
-    //         }).then(function (res) {
-    //             console.log(res.data);
-    //             vm.data.files.push({ url: "/files/" + res.data });
-    //             vm.isUploading = false;
-    //         }, function (err) {
-    //             vm.isUploading = false;
-    //             console.log("error", err)
-    //         });
-    //     });
-    // };
 
     vm.save = function () {
 

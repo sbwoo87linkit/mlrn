@@ -44,6 +44,6 @@
 
 <div class="text-right" style="margin-top: 10px;">
   <button class="btn btn-default" ng-click="vm.goBack()">Back</button>
-  <button class="btn btn-danger" ng-if="isUploading">Saving .... </button>
-  <button class="btn btn-primary" ng-if="!isUploading" ng-click="vm.save()">Save</button>
+  <button class="btn btn-default" ng-if="vm.isUploading">Uploading .... </button>
+  <button class="btn btn-primary" ng-if="!vm.isUploading" ng-click="vm.save()">Save</button>
 </div>

@@ -6,7 +6,7 @@ app.controller('board.page.ctrl', function ($scope, $rootScope, $window, $stateP
 
     // $rootScope.menu = $window.localStorage.getItem('menu');
     // $scope.viewTitle = $window.localStorage.getItem('boardTitle');
-    // $scope.apiUrl = config.apiUrl;
+    // $scope.apiUrl = vm.appContext.apiUrl;
 
     // $rootScope.menu = menuService.get($stateParams).menu;
     // $scope.viewTitle = menuService.get($stateParams).boardTitle;

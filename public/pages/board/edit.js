@@ -29,7 +29,7 @@ app.controller('board.edit.ctrl', function ($scope, $rootScope, $window, $http, 
         var file = element.files[0];
         var fd = new FormData();
         fd.append('file', file);
-        $http.post(config.apiUrl + '/api/files/', fd, {
+        $http.post(vm.appContext.apiUrl + '/api/files/', fd, {
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
         }).then(function (res) {
@@ -52,7 +52,7 @@ app.controller('board.edit.ctrl', function ($scope, $rootScope, $window, $http, 
         var file = element.files[0];
         var fd = new FormData();
         fd.append('file', file);
-        $http.post(config.apiUrl + '/api/files/', fd, {
+        $http.post(vm.appContext.apiUrl + '/api/files/', fd, {
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
         }).then(function (res) {

@@ -49,6 +49,6 @@
 
 <div class="text-right" style="margin-top: 10px;">
   <button class="btn btn-default" ng-click="goBack()">Back</button>
-  <button class="btn btn-danger" ng-if="isUploading">저장중 .... </button>
-  <button class="btn btn-primary" ng-if="!isUploading" ng-click="save()">저장</button>
+  <button class="btn btn-danger" ng-if="vm.isUploading">저장중 .... </button>
+  <button class="btn btn-primary" ng-if="!vm.isUploading" ng-click="save()">저장</button>
 </div>
