@@ -66,9 +66,9 @@
 
 <div class="text-right">
     <button class="btn btn-default" ui-sref="board.list()">List</button>
-    <button class="btn btn-primary" ng-if="user.role === 'admin'" ui-sref="board.edit( {'articleType':$stateParams.articleType, 'articleId':$stateParams.articleId })">Edit
+    <button class="btn btn-primary" ng-if="vm.appContext.user.role === 'admin'" ui-sref="board.edit( {'articleType':$stateParams.articleType, 'articleId':$stateParams.articleId })">Edit
     </button>
-    <button class="btn btn-danger" ng-if="user.role === 'admin'" ng-click="vm.delete()">Delete</button>
+    <button class="btn btn-danger" ng-if="vm.appContext.user.role === 'admin'" ng-click="vm.delete()">Delete</button>
 </div>
 
 <!-- <div disqus="id"></div> -->

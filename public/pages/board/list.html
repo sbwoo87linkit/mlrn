@@ -5,7 +5,7 @@
 <div class="row" style="">
     <div class="col-lg-6"></div>
     <div class="col-lg-6 text-right">
-        <button type="button" style="margin-left: 20px;" class="btn btn-success" ng-if="user.role === 'admin'" ui-sref="board.create({'articleType': $stateParams.articleType})">
+        <button type="button" style="margin-left: 20px;" class="btn btn-success" ng-if="vm.appContext.user.role === 'admin'" ui-sref="board.create({'articleType': $stateParams.articleType})">
             New
         </button>
     </div>
@@ -38,9 +38,9 @@
                 </div>
             </div>
             <div class="text-right" style="overflow: hidden">
-                <button class="btn btn-primary btn-sm" ng-if="user.role === 'admin'" ui-sref="board.edit( {'articleType': item.articleType, 'articleId':item._id})">Edit
+                <button class="btn btn-primary btn-sm" ng-if="vm.appContext.user.role === 'admin'" ui-sref="board.edit( {'articleType': item.articleType, 'articleId':item._id})">Edit
                 </button>
-                <button class="btn btn-danger btn-sm" ng-click="data.selectedItem = item; delete(item)" ng-if="user.role === 'admin'" data-toggle="modal"
+                <button class="btn btn-danger btn-sm" ng-click="data.selectedItem = item; delete(item)" ng-if="vm.appContext.user.role === 'admin'" data-toggle="modal"
                     data-target="#deleteModal">Delete</button>
             </div>
 
@@ -73,9 +73,9 @@
                 </div>
             </div>
             <div class="text-right" style="overflow: hidden; margin-bottom: 10px;">
-                <button class="btn btn-primary btn-sm" ng-if="user.role === 'admin'" ui-sref="board.edit( {'articleType': item.articleType, 'articleId':item._id})">Edit
+                <button class="btn btn-primary btn-sm" ng-if="vm.appContext.user.role === 'admin'" ui-sref="board.edit( {'articleType': item.articleType, 'articleId':item._id})">Edit
                 </button>
-                <button class="btn btn-danger btn-sm" ng-click="data.selectedItem = item; delete()" ng-if="user.role === 'admin'" data-toggle="modal"
+                <button class="btn btn-danger btn-sm" ng-click="data.selectedItem = item; delete()" ng-if="vm.appContext.user.role === 'admin'" data-toggle="modal"
                     data-target="#deleteModal">Delete</button>
             </div>
 
