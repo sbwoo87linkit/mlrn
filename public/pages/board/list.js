@@ -3,17 +3,6 @@ app.controller('board.list.ctrl', function ($scope, $rootScope, $window, $stateP
 
     var vm = this;
     vm.appContext = appContextService.context;
-    // console.log('board.list.ctrl ... $stateParams.menu', $stateParams.menu)
-
-
-    // vm.apiUrl = config.apiUrl;
-    // vm.boardType = menuService.get($stateParams).boardType;
-    // $rootScope.menu = menuService.get($stateParams).menu;
-    // vm.viewTitle = menuService.get($stateParams).boardTitle;
-
-
-    // return;
-
 
     vm.data = { "searchText": "" };
 
@@ -27,8 +16,6 @@ app.controller('board.list.ctrl', function ($scope, $rootScope, $window, $stateP
 
     vm.load = function (page) {
 
-        console.log('page', page);
-        // vm.currentPage = page;
         boardService.load($stateParams.sub_menu, page, vm.pagination.itemsPerPage, vm.data.searchText).then(
             function (res) {
                 // console.log('res', res);
@@ -83,12 +70,12 @@ app.controller('board.list.ctrl', function ($scope, $rootScope, $window, $stateP
                         $ngConfirm({
             boxWidth: '30%',
             useBootstrap: false,
-            title: '삭제확인',
-            content: '삭제하시겠습니까?',
+            title: 'Confirm',
+            content: 'Delete it?',
             scope: vm,
             buttons: {
                 confirm: {
-                    text: '삭제',
+                    text: 'Delete',
                     btnClass: 'btn-blue',
                     action: function (scope, button) {
 
@@ -104,7 +91,7 @@ app.controller('board.list.ctrl', function ($scope, $rootScope, $window, $stateP
                     }
                 },
                 cancel: {
-                    text: '취소',
+                    text: 'Cancel',
                     btnClass: 'btn-orange',
                     // action: function (scope, button) {
                     // }

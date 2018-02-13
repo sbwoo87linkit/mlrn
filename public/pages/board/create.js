@@ -1,4 +1,4 @@
-app.controller('board.create.ctrl', function ($scope, $window, $rootScope, $stateParams, $http, boardService, toastr, config, appContextService) {
+app.controller('board.create.ctrl', function ($scope, $window, $rootScope, $stateParams, $http, boardService, toastr, appContextService, $timeout) {
 
     var vm = this;
     vm.appContext = appContextService.context;
@@ -13,7 +13,7 @@ app.controller('board.create.ctrl', function ($scope, $window, $rootScope, $stat
         }); 
     } 
 
-    $scope.data = {
+    vm.data = {
         "articleType": $stateParams.sub_menu,
         // "image": "article2.jpg",
         "title": "Board 테스트 Title",
@@ -23,87 +23,92 @@ app.controller('board.create.ctrl', function ($scope, $window, $rootScope, $stat
         "files": []
     }
 
-    $scope.deleteImage = function (index) {
-        $scope.data.images.splice(index, 1)
+    vm.deleteImage = function (index) {
+        vm.data.images.splice(index, 1)
     }
 
     $scope.imageChanged = function (element) {
 
-        $scope.isUploading = true;
-        $scope.$apply(function (scope) {
-            var file = element.files[0];
-            var fd = new FormData();
-            fd.append('file', file);
-            $http.post(config.apiUrl + '/api/files/', fd, {
-                transformRequest: angular.identity,
-                headers: { 'Content-Type': undefined }
-            }).then(function (res) {
-                $scope.isUploading = false;
-                console.log(res.data);
-                $scope.data.images.push({ url: "/files/" + res.data });
-            }, function (err) {
-                $scope.isUploading = false;
-                console.log("error", err)
-            });
+        vm.isUploading = true;
+
+        var file = element.files[0];
+        var fd = new FormData();
+        fd.append('file', file);
+        $http.post(vm.appContext.apiUrl + '/api/files/', fd, {
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        }).then(function (res) {
+            vm.isUploading = false;
+            vm.data.images.push({ url: "/files/" + res.data });
+        }, function (err) {
+            vm.isUploading = false;
+            console.log("error", err)
         });
+
     };
 
-    $scope.deleteFile = function (index) {
-        $scope.data.files.splice(index, 1)
+
+    vm.deleteFile = function (index) {
+        vm.data.files.splice(index, 1)
     }
 
-    $scope.isUploading = false;
+    vm.isUploading = false;
 
-    $scope.fileChanged = function (element) {
+    vm.fileChanged = function (element) {
 
-        $scope.isUploading = true;
-        $scope.$apply(function (scope) {
-            var file = element.files[0];
-            var fd = new FormData();
-            fd.append('file', file);
-            $http.post(config.apiUrl + '/api/files/', fd, {
-                transformRequest: angular.identity,
-                headers: { 'Content-Type': undefined }
-            }).then(function (res) {
-                console.log(res.data);
-                $scope.data.files.push({ url: "/files/" + res.data });
-                $scope.isUploading = false;
-            }, function (err) {
-                $scope.isUploading = false;
-                console.log("error", err)
-            });
+        vm.isUploading = true;
+        var file = element.files[0];
+        var fd = new FormData();
+        fd.append('file', file);
+        $http.post(config.apiUrl + '/api/files/', fd, {
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+        }).then(function (res) {
+            console.log(res.data);
+            vm.data.files.push({ url: "/files/" + res.data });
+            vm.isUploading = false;
+        }, function (err) {
+            vm.isUploading = false;
+            console.log("error", err)
         });
     };
 
-    $scope.save = function () {
+    // vm.fileChanged = function (element) {
 
-        // if (!$scope.data.title) {
-        //     toastr.error("제목을 추가해 주세요");
-        //     return;
-        // }
+    //     vm.isUploading = true;
+    //     vm.$apply(function (scope) {
+    //         var file = element.files[0];
+    //         var fd = new FormData();
+    //         fd.append('file', file);
+    //         $http.post(config.apiUrl + '/api/files/', fd, {
+    //             transformRequest: angular.identity,
+    //             headers: { 'Content-Type': undefined }
+    //         }).then(function (res) {
+    //             console.log(res.data);
+    //             vm.data.files.push({ url: "/files/" + res.data });
+    //             vm.isUploading = false;
+    //         }, function (err) {
+    //             vm.isUploading = false;
+    //             console.log("error", err)
+    //         });
+    //     });
+    // };
+
+    vm.save = function () {
 
 
-        if (vm.sub_menu.mustHaveImage && $scope.data.images.length === 0) {
+        if (vm.sub_menu.mode === 'board' && !vm.data.title) {
+            toastr.error("제목을 추가해 주세요");
+            return;
+        }
+
+
+        if (vm.sub_menu.mustHaveImage && vm.data.images.length === 0) {
                 toastr.error("이미지 파일을 추가해 주세요");
                 return;
         }
 
-        // return;
-
-
-        // if (!$scope.data.content) {
-        //     toastr.error("내용을 추가해 주세요");
-        //     return;
-        // }
-
-        // if ($stateParams.articleType === 'notice' || $stateParams.articleType === 'news') {
-        //     if ($scope.data.images.length === 0) {
-        //         toastr.error("이미지 파일을 추가해 주세요");
-        //         return;
-        //     }
-        // }
-
-        boardService.post($scope.data).then(
+        boardService.post(vm.data).then(
             function () {
                 window.history.back();
             },
@@ -114,7 +119,7 @@ app.controller('board.create.ctrl', function ($scope, $window, $rootScope, $stat
         )
 
     }
-    $scope.goBack = function () {
+    vm.goBack = function () {
         window.history.back();
     }
 

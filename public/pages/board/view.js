@@ -3,30 +3,17 @@ app.controller('board.view.ctrl', function ($scope, $rootScope, $window, $stateP
 
     var vm = this;
     vm.appContext = appContextService.context;
-    // if ($stateParams.articleType === 'un-sdsn') $scope.viewTitle = "UN SDSN 소식";
-    // if ($stateParams.articleType === 'korea-sdsn') $scope.viewTitle = "Korea SDSN 소개";
-
-    // $rootScope.menu = $window.localStorage.getItem('menu');
-    // $scope.viewTitle = $window.localStorage.getItem('boardTitle');
-    $scope.apiUrl = config.apiUrl;
-
-    // $rootScope.menu = menuService.get($stateParams).menu;
-    // $scope.viewTitle = menuService.get($stateParams).boardTitle;
-
-    // console.log($rootScope.menu);
-    // console.log($stateParams.articleType);
-
-    $scope.delete = function () {
+    vm.delete = function () {
 
         $ngConfirm({
             boxWidth: '30%',
             useBootstrap: false,
-            title: '삭제확인',
-            content: '삭제하시겠습니까?',
+            title: 'confirm',
+            content: 'Delete it?',
             scope: $scope,
             buttons: {
                 confirm: {
-                    text: '삭제',
+                    text: 'Delete',
                     btnClass: 'btn-blue',
                     action: function (scope, button) {
 
@@ -41,7 +28,7 @@ app.controller('board.view.ctrl', function ($scope, $rootScope, $window, $stateP
                     }
                 },
                 cancel: {
-                    text: '취소',
+                    text: 'Cancel',
                     btnClass: 'btn-orange',
                     // action: function (scope, button) {
                     // }
@@ -54,13 +41,13 @@ app.controller('board.view.ctrl', function ($scope, $rootScope, $window, $stateP
     boardService.get($stateParams.articleId).then(
         function (result) {
             // console.log(result);
-            $scope.item = result.data;
+            vm.item = result.data;
         }, function (err) {
             console.log(err);
         }
     )
 
     // console.log($location.$$url);
-    $scope.id = $location.$$url;
+    // $scope.id = $location.$$url;
 
 })

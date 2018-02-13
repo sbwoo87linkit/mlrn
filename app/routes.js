@@ -26,13 +26,29 @@ var storage = multer.diskStorage({
     }
 });
 
-var upload = multer({storage: storage});
 
 module.exports = function (app) {
+
+    var upload = multer({ storage: storage });
     app.post('/api/files', upload.single('file'), function (req, res) {
-        console.log('zzzzzz', req.file);
+        // console.log('zzzzzz', req.file);
         res.send(req.file.filename)
     });
+
+
+
+    // var upload = multer({ storage: storage }).single('file');
+
+    // app.post('/api/files', function (req, res, next) {
+    //     upload(req, res, function (err) {
+    //         console.log(req) // here i see other fields from request like req.body.description
+    //         if (err) { return next(err) }
+    //         // res.json(201)
+    //         res.send(req.file.filename)
+    //     })
+    // });
+
+
 
     // app.get('/board', function(req, res) {
     //     res.send("OK");
