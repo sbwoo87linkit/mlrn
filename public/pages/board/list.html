@@ -1,4 +1,6 @@
-<div class="row" style="">
+<!-- <div class="w3-pink">aa{{vm.sub_menu}}</div> -->
+
+<div class="row">
     <div class="col-lg-6"></div>
     <div class="col-lg-6 text-right">
         <button type="button" style="margin-left: 20px;" class="w3-button w3-green" ng-if="vm.appContext.user.role === 'admin'" ui-sref="board.save({'articleType': $stateParams.articleType, 'articleId':null})">
@@ -9,7 +11,13 @@
 <table class="table table-hover w3-margin-top" ng-if="vm.items.length">
     <tr ng-repeat="item in vm.items" ui-sref="board.view({'articleType': item.articleType, 'articleId':item._id})" style="cursor:pointer">
         <td style="white-space:nowrap">{{item.date | date : "y.MM.dd HH:mm"}}</td>
-        <td style="width:100%">{{item.title}}</td>
+        <td style="width:100%">
+            {{item.title}}
+            <!-- <div ng-if="vm.sub_menu.showContentInList">{{item.content}}</div> -->
+                <div ng-if="vm.sub_menu.showContentInList" ng-bind-html="item.content" style="white-space: pre-line; font-size: small; margin-top: 0px">
+                </div>
+
+        </td>
     </tr>
 </table>
 

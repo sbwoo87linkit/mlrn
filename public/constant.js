@@ -127,6 +127,7 @@ app.constant('config', {
                     name: 'mlr_info',
                     title: 'MLR INFO',
                     mode: 'board',
+                    showContentInList: false,
                     titleRequired: true,
                     contentRequired: true,
                     htmlEdit: true,
@@ -137,6 +138,7 @@ app.constant('config', {
                     name: 'issue_brief',
                     title: 'ISSUE BRIEF',
                     mode: 'board',
+                    showContentInList: true,
                     titleRequired: true,
                     contentRequired: true,
                     htmlEdit: true,
@@ -154,6 +156,7 @@ app.constant('config', {
                     name: 'reports',
                     title: 'REPORTS',
                     mode: 'board',
+                    showContentInList: false,
                     titleRequired: true,
                     contentRequired: true,
                     htmlEdit: true,
@@ -164,6 +167,7 @@ app.constant('config', {
                     name: 'materials',
                     title: 'MATERIALS',
                     mode: 'board',
+                    showContentInList: false,
                     titleRequired: true,
                     contentRequired: true,
                     htmlEdit: true,
@@ -173,6 +177,14 @@ app.constant('config', {
             ]
         },
 
+/*
+
+NOTICE 게시판은 제목/날짜/no. 등 기본정보만 보이는 리스트형 게시판 (내용노출X)
+MLRN Activities, Issue Brief 게시판 스타일: 제목/ 내용 일부/ 만 보이도록 깔끔하게
+
+*/
+
+
         {
             name: 'news',
             title: 'NEWS',
@@ -181,6 +193,7 @@ app.constant('config', {
                     name: 'notice',
                     title: 'NOTICE',
                     mode: 'board',
+                    showContentInList: false,
                     titleRequired: true,
                     contentRequired: true,
                     htmlEdit: true,
@@ -191,6 +204,7 @@ app.constant('config', {
                     name: 'activities',
                     title: 'ACTIVITIES',
                     mode: 'board',
+                    showContentInList : true,
                     titleRequired: true,
                     contentRequired: true,
                     htmlEdit: true,
@@ -208,6 +222,7 @@ app.constant('config', {
                 name: 'banner',
                 title: 'BANNER',
                 mode: 'board',
+                showContentInList: false,
                 titleRequired: true,
                 contentRequired: false,
                 htmlEdit: false,
