@@ -1,26 +1,13 @@
-<h2 class="w3-theme-text"> {{ $stateParams.sub_menu | uppercase }}
-  <small> - Edit</small>
-</h2>
-
-
 <form>
-  <!-- <div class="form-group">
-    <label for="noticeTitle">Share with public board</label>
-    <input type="checkbox" ng-model="vm.data.share">
-  </div> -->
-  <div class="form-group">
+  <div class="form-group" ng-if="vm.sub_menu.titleRequired">
     <label for="noticeTitle">Title</label>
     <input ng-model="vm.data.title" type="text" class="form-control" id="noticeTitle" placeholder="Title">
   </div>
-  <div class="form-group">
+  <div class="form-group" ng-if="vm.sub_menu.contentRequired">
     <label for="noticeContent">Content</label>
-    <!-- <textarea ng-model="vm.data.content" type="text" rows="10" class="form-control" id="noticeContent" placeholder="내용"></textarea> -->
-
     <summernote ng-model="vm.data.content" height="300">
       <span style="font-weight: bold;"></span>
     </summernote>
-
-
   </div>
 
   <div ng-if="vm.sub_menu.mode != 'page'">
@@ -51,7 +38,7 @@
 
 
 <div class="text-right">
-  <button class="btn btn-default" ng-click="vm.goBack()">Back</button>
-  <button class="btn btn-default" ng-if="vm.isUploading">Uploading .... </button>
-  <button class="btn btn-primary" ng-if="!vm.isUploading" ng-click="vm.save()">Save</button>  
+  <button class="w3-button w3-green" ng-click="vm.goBack()">Back</button>
+  <button class="w3-button w3-green" ng-if="vm.isUploading">Uploading .... </button>
+  <button class="w3-button w3-green" ng-if="!vm.isUploading" ng-click="vm.save()">Save</button>  
 </div>

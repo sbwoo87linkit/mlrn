@@ -1,173 +1,219 @@
 app.constant('config', {
     appName: 'My App',
     appVersion: 1.0,
-    // appTitle: 'Web Board v1.0',
     appTitle: 'Mid-Latitude Region Network',
-    email: 'mlrn_korea@korea.ac.kr',
-    address: '(02841) #L502 Life and Science West Bldg, Korea University, Anam-ro 145, Seoul, KOREA',
+    email: 'mlrn_ojeri@korea.ac.kr',
+    address1: '(02841) #317, East Bldg., College of Life Science, Korea University,',
+    address2: 'Anam-ro 145, Seongbuk-gu, Seoul , KOREA',
     // apiUrl: 'http://127.0.0.1:1337',
     apiUrl: 'http://ec2-13-125-112-144.ap-northeast-2.compute.amazonaws.com',
     menuArray: [
-    //     {
-    //     name: 'home',
-    //     activeIndex: 0,
-    //     list: [
-    //         {
-    //             name : 'home',
-    //             type: 'static',
-    //             templateUrl: 'pages/home/home.html',
-    //             controller: 'home.ctrl as vm'
-    //         },
-    //     ]
-    // },
-    {
-        name: 'about',
-        activeIndex: 0,
-        list: [
-            {
-                name: 'mlrn',
-                mode: 'page',
-            },
-            {
-                name: 'vision',
-                mode: 'page',
-            },
-            {
-                name: 'contact',
-                mode: 'page',
-            },
-        ]
-    },
+        {
+            name: 'about',
+            title: 'ABOUT',
+            activeIndex: 0,
+            list: [{
+                    name: 'mlrn',
+                    title: 'MLRN?',
+                    mode: 'page', 
+                    showTitle: false,
+                    titleRequired: false,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
+                },
+                {
+                    name: 'about_us',
+                    title: 'ABOUT US',
+                    mode: 'page',
+                    titleRequired: false,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
+                },
+                {
+                    name: 'contact',
+                    title: 'CONTACT',
+                    mode: 'page',
+                    titleRequired: false,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
+                },
+            ]
+        },
         {
             name: 'network',
+            title: 'NETWORK',
             activeIndex: 0,
-            list: [
-                {
+            list: [{
                     name: 'member',
+                    title: 'MEMBER',
                     mode: 'page',
+                    titleRequired: false,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
                 },
                 {
                     name: 'partner',
+                    title: 'PARTNER',
                     mode: 'page',
+                    titleRequired: false,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
                 },
                 {
-                    name: 'by program',
+                    name: 'by_program',
+                    title: 'By PROGRAM',
                     mode: 'page',
+                    titleRequired: false,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
                 },
                 {
-                    name: 'join us',
+                    name: 'join_us',
+                    title: 'JOIN US',
                     mode: 'page',
+                    titleRequired: false,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
                 },
             ]
         },
 
         {
             name: 'focus',
+            title: 'FOCUS',
             activeIndex: 0,
-            list: [
-                {
-                    name: 'wfe nexus',
+            list: [{
+                    name: 'wfe_nexus',
+                    title: 'WFE NEXUS',
                     mode: 'page',
+                    titleRequired: false,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
                 },
                 {
-                    name: 'thematic group',
+                    name: 'thematic_group',
+                    title: 'THEMATIC GROUP',
                     mode: 'page',
+                    titleRequired: false,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
                 },
             ]
         },
 
         {
-            name: 'mlr info',
+            name: 'mlr_info',
+            title: 'MLR INFO',
             activeIndex: 0,
-            list: [
-                {
-                    name: 'mlr info',
-                    mode: 'page',
+            list: [{
+                    name: 'mlr_info',
+                    title: 'MLR INFO',
+                    mode: 'board',
+                    titleRequired: true,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
                 },
                 {
-                    name: 'issue brief',
-                    mode: 'page',
+                    name: 'issue_brief',
+                    title: 'ISSUE BRIEF',
+                    mode: 'board',
+                    titleRequired: true,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
                 },
             ]
         },
 
-
-     // ABOUT // MLRN ? VISION & GOAL CONTACT 
-     // NETWORK // MEMBER PARTNER By PROGRAM JOIN US
-     // FOCUS // WFE NEXUS THEMATIC GROUP
-     // MLR INFO // MLR INFO ISSUE BRIEF
-
-    {
+        {
             name: 'resources',
+            title: 'RESOURCES',
             activeIndex: 0,
-            list: [
-                {
+            list: [{
                     name: 'reports',
+                    title: 'REPORTS',
                     mode: 'board',
+                    titleRequired: true,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: true,
                 },
                 {
                     name: 'materials',
+                    title: 'MATERIALS',
                     mode: 'board',
+                    titleRequired: true,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: true,
                 },
             ]
-
         },
 
         {
             name: 'news',
-            activeIndex: 0,
-            list: [
-                {
+            title: 'NEWS',
+            activeIndex: 1,
+            list: [{
                     name: 'notice',
+                    title: 'NOTICE',
                     mode: 'board',
+                    titleRequired: true,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
                 },
                 {
-                    name: 'mlrn activities',
+                    name: 'activities',
+                    title: 'ACTIVITIES',
                     mode: 'board',
-                    mustHaveImage: true,
+                    titleRequired: true,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
                 },
             ]
-
         },
-
+        {
+            name: 'settings',
+            title: 'SETTINGS',
+            activeIndex: 0,
+            adminRequired: true,
+            list: [{
+                name: 'banner',
+                title: 'BANNER',
+                mode: 'board',
+                titleRequired: true,
+                contentRequired: false,
+                htmlEdit: false,
+                imageRequired: true,
+                fileRequired: false,
+            }, ]
+        },
     ],
-    // menuObject: {
-    //     'about': {
-    //         'mlrn': {
-    //             'board_type': 'static',
-    //             'template_url': 'pages/about/about.mlrn.html',
-    //         },
-    //         'vision': {
-    //             'board_type': 'static',
-    //             'template_url': 'pages/about/about.visionandgoal.html',
-    //         },
-    //     },
-    //     'home': {
-    //         'home': {
-    //             'board_type': 'static',
-    //             'template_url': 'pages/home/home.html',
-    //         },
-    //     },
-
-    // },
-    // menu: {
-    //     // name: 'mlrn', collection : {main_menu:'about', board_type:'static'}
-    //     'mlrn': {
-    //         // 'main_menu': 'about',
-    //         'board_type': 'static',
-    //         'template_url': 'pages/about/about.mlrn.html',
-    //     },
-    //     'contents': {
-    //         // 'main_menu': 'about',
-    //         'board_type': 'contents'
-    //     },
-    //     'reports': {
-    //         // 'main_menu': 'about',
-    //         'board_type': 'gallary'
-    //     },
-    //     'materials': {
-    //         // 'main_menu': 'about',
-    //         'board_type': 'gallary'
-    //     },
-    // }
 });

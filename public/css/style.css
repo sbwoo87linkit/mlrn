@@ -35,10 +35,19 @@ body {
   /*font-family: '맑은고딕', sans-serif;*/
   /*font-family: Arial, "Droid Sans", sans-serif;*/
   /*font-family: 'Open Sans', Arial, sans-serif;*/
-  font-weight: 300;
-  font-size: 16px;
+  font-weight: 100;
+  font-size: 1em;
   color: #5c5c5c;
 }
+
+td {
+  /* font-family: Arial; */
+  /* font-size: 64px; */
+}
+
+/* body {
+  font-size: 1.0em;
+} */
 
 .header {
   padding: 10px 30px;
@@ -111,9 +120,9 @@ ul.list li {
   color: #5c5c5c;
 }
 
-h2,
+/* h2,
 h2.heading {
-  /*color: #5c5c5c; */
+  color: #5c5c5c;
   color: #38ad5d;
   border-bottom: 2px solid #A2734F;
   margin-top: 30px;
@@ -127,7 +136,7 @@ h3.heading {
   margin-bottom: 15px;
   padding-bottom: 10px;
   margin-top: 20px;
-}
+} */
 
 div.content {
   min-height: 500px;
@@ -325,11 +334,11 @@ pre {
 p,
 li,
 td {
-  text-align: justify;
-  font-size: 14px;
+  /* text-align: justify; */
+  /* font-size: 14px; */
   /*letter-spacing: 1.2px;*/
   /*font-family: "Nanum Gothic";*/
-  line-height: 25px;
+  /* line-height: 25px; */
 }
 
 /* carousel */

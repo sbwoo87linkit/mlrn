@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="node_modules/w3-css/3/w3.css" />
   <link rel="stylesheet" ng-href="css/{{vm.appContext.styleName}}" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/w3-mlrn.css" />
 
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
@@ -37,6 +38,9 @@
   <script src="node_modules/angular-base64/angular-base64.min.js"></script>
   <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
   <script src="node_modules/angular-disqus/angular-disqus.min.js"></script>
+  <script src="node_modules/lodash/lodash.min.js"></script>
+
+
 
   <script src="app.js"></script>
 
@@ -53,8 +57,9 @@
   <script src="pages/auth/signin.js"></script>
   <script src="pages/auth/signup.js"></script>
   <script src="pages/board/board.js"></script>
-  <script src="pages/board/create.js"></script>
-  <script src="pages/board/edit.js"></script>
+  <!-- <script src="pages/board/create.js"></script>
+  <script src="pages/board/edit.js"></script> -->
+  <script src="pages/board/save.js"></script>
   <script src="pages/board/list.js"></script>
   <script src="pages/board/page.js"></script>
   <script src="pages/board/view.js"></script>
@@ -64,14 +69,14 @@
   <div ng-include="'pages/header.html'"></div>
   <div class="container">
     <div class="row">
-      <div ng-if="!$state.is('home') && !$state.is('signin') && !$state.is('signup')" class="col-md-3" ng-include="'pages/sidebar.html'"></div>
-      <div class="" ng-class="($state.is('home') || $state.is('signin') || $state.is('signup')) ? 'col-md-12' : 'col-md-9'">
+      <div ng-if="!$state.is('home') && !$state.is('signin') && !$state.is('signup')" class="col-md-2" ng-include="'pages/sidebar.html'"></div>
+      <div class="" ng-class="($state.is('home') || $state.is('signin') || $state.is('signup')) ? 'col-md-12' : 'col-md-10'">
+          <!-- <h2 class="w3-theme-text"> {{ $stateParams.sub_menu | uppercase }}
+          </h2> -->
         <div ui-view class="content"></div>
       </div>
     </div>
-
   </div>
-
   <div ng-include="'pages/footer.html'"></div>
 </body>
 

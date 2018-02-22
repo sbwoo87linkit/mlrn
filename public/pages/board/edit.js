@@ -13,7 +13,12 @@ app.controller('board.edit.ctrl', function ($scope, $rootScope, $window, $http, 
         vm.sub_menu = main_menu.list.find(function (menu) {
             return menu.name === $stateParams.sub_menu;
         });
-    } 
+    }
+
+    if (!vm.sub_menu) {
+        toastr.error('vm.sub_menu not defined.')
+        return;
+    }
 
     vm.goBack = function () {
         window.history.back();

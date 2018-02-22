@@ -1,14 +1,44 @@
-<div class="footer w3-theme-background">
+<div class="w3-text-gray">
     <div class="container">
-        <div class="roboto">
-            <a href="" ui-sref="home">
-                <span class="fw-100 w3-text-white">{{vm.appContext.appTitle}}</span>
-            </a>
-        </div>
-         <span ng-if="vm.appContext.email">E-mail :</span>    {{vm.appContext.email}}
-         <br> {{vm.appContext.address}}
+        <!-- <hr/> -->
+        <div class="w3-row w3-margin-top w3-padding-16 w3-border-top ">
+            <div class="w3-col m8 l9" style="font-size:0.9em">
 
-        <!-- E-mail : mlrn_korea@korea.ac.kr
-        <br> (02841) #L502 Life and Science West Bldg, Korea University, Anam-ro 145, Seoul, KOREA -->
+                <div class="roboto">
+                    <a href="" ui-sref="home">
+                        <span class="w3-mlrn-text-green" style="font-size:1.3em">{{vm.appContext.appTitle}}</span>
+                    </a>
+                </div>
+                <span ng-if="vm.appContext.email">E-mail :</span> {{vm.appContext.email}}
+                <br> {{vm.appContext.address1}}
+                <br> {{vm.appContext.address2}}
+
+
+            </div>
+            <div class="w3-col m4 l3">
+
+                <div class="dropup">
+                    <div style="width:200px" class="w3-white w3-border dropdown-toggle" data-toggle="dropdown">
+                        <div class="w3-right w3-border-left w3-center w3-padding">
+                            <i class="fas fa-caret-down"></i>
+                        </div>
+                        <div class="w3-padding">
+                            Related Links
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="width:100%">
+                        <li>
+                            <a href="http://ojeri.korea.ac.kr/" target="_blank">OJERI</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
     </div>
 </div>

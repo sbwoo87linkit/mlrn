@@ -1,11 +1,7 @@
-<h2  class="w3-theme-text"> {{ $stateParams.sub_menu }}
-    <!-- <small> - List</small> -->
-</h2>
-
 <div class="row" style="">
     <div class="col-lg-6"></div>
     <div class="col-lg-6 text-right">
-        <button type="button" style="margin-left: 20px;" class="btn btn-success" ng-if="user.role === 'admin'" ui-sref="board.create({'articleType': $stateParams.articleType})">
+        <button type="button" style="margin-left: 20px;" class="w3-button w3-green" ng-if="vm.appContext.user.role === 'admin'" ui-sref="board.save({'articleType': $stateParams.articleType, 'articleId':null})">
             New
         </button>
     </div>
@@ -38,9 +34,9 @@
                 </div>
             </div>
             <div class="text-right" style="overflow: hidden">
-                <button class="btn btn-primary btn-sm" ng-if="user.role === 'admin'" ui-sref="board.edit( {'articleType': item.articleType, 'articleId':item._id})">Edit
+                <button class="btn btn-primary btn-sm" ng-if="vm.appContext.user.role === 'admin'" ui-sref="board.edit( {'articleType': item.articleType, 'articleId':item._id})">Edit
                 </button>
-                <button class="btn btn-danger btn-sm" ng-click="data.selectedItem = item; delete(item)" ng-if="user.role === 'admin'" data-toggle="modal"
+                <button class="btn btn-danger btn-sm" ng-click="data.selectedItem = item; delete(item)" ng-if="vm.appContext.user.role === 'admin'" data-toggle="modal"
                     data-target="#deleteModal">Delete</button>
             </div>
 
@@ -73,9 +69,9 @@
                 </div>
             </div>
             <div class="text-right" style="overflow: hidden; margin-bottom: 10px;">
-                <button class="btn btn-primary btn-sm" ng-if="user.role === 'admin'" ui-sref="board.edit( {'articleType': item.articleType, 'articleId':item._id})">Edit
+                <button class="btn btn-primary btn-sm" ng-if="vm.appContext.user.role === 'admin'" ui-sref="board.edit( {'articleType': item.articleType, 'articleId':item._id})">Edit
                 </button>
-                <button class="btn btn-danger btn-sm" ng-click="data.selectedItem = item; delete()" ng-if="user.role === 'admin'" data-toggle="modal"
+                <button class="btn btn-danger btn-sm" ng-click="data.selectedItem = item; delete()" ng-if="vm.appContext.user.role === 'admin'" data-toggle="modal"
                     data-target="#deleteModal">Delete</button>
             </div>
 
@@ -114,7 +110,7 @@
 <!-- {{vm.items}} -->
 <table class="table table-hover w3-margin-top">
     <tr ng-repeat="item in vm.items" ui-sref="board.view({'articleType': item.articleType, 'articleId':item._id})" style="cursor:pointer">
-        <td style="white-space:nowrap">{{item.date | date : "y.MM.dd hh:mm"}}</td>
+        <td style="white-space:nowrap">{{item.date | date : "y.MM.dd HH:mm"}}</td>
         <td style="width:100%">{{item.title}}</td>
     </tr>
 </table>

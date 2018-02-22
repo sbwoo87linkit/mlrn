@@ -13,14 +13,24 @@ app.controller('board.create.ctrl', function ($scope, $window, $rootScope, $stat
         }); 
     } 
 
+    if (!vm.sub_menu) {
+        toastr.error('vm.sub_menu not defined.')
+        return;
+    }
+
     vm.data = {
         "articleType": $stateParams.sub_menu,
         // "image": "article2.jpg",
-        "title": "Board 테스트 Title",
-        "content": `<h1 style="color: rgb(0, 0, 0);"><font color="#5c5c5c">H1 Title font</font></h1><p>l<img src="http://ojeri.korea.ac.kr/wp-content/themes/ojeri_new/img/logo.png" style="width: 273px;"></p><p><a href="http://ojeri.korea.ac.kr/wp-content/themes/ojeri_new/img/logo.png" target="_blank">Image link</a>&nbsp;&nbsp;<a href="http://google.com">http://google.com</a><font face="Segoe UI, Arial, sans-serif"><span style="font-size: 36px;">&nbsp;</span></font></p><p><span style="color: rgb(92, 92, 92);">The project will now focus on supporting the development of long-term low-emission development strategies, as agreed in the Paris Agreement. Energy research institutions from other countries are welcome to join the project. For more information please go to the</span><a href="http://www.deepdecarbonization.org/" target="_blank" style="background-color: rgb(255, 255, 255); box-sizing: border-box; color: rgb(51, 122, 183);">project’s website</a><span style="color: rgb(92, 92, 92);">.</span></p>`,
+        "title": "",
+        // "content": `<h1 style="color: rgb(0, 0, 0);"><font color="#5c5c5c">H1 Title font</font></h1><p>l<img src="http://ojeri.korea.ac.kr/wp-content/themes/ojeri_new/img/logo.png" style="width: 273px;"></p><p><a href="http://ojeri.korea.ac.kr/wp-content/themes/ojeri_new/img/logo.png" target="_blank">Image link</a>&nbsp;&nbsp;<a href="http://google.com">http://google.com</a><font face="Segoe UI, Arial, sans-serif"><span style="font-size: 36px;">&nbsp;</span></font></p><p><span style="color: rgb(92, 92, 92);">The project will now focus on supporting the development of long-term low-emission development strategies, as agreed in the Paris Agreement. Energy research institutions from other countries are welcome to join the project. For more information please go to the</span><a href="http://www.deepdecarbonization.org/" target="_blank" style="background-color: rgb(255, 255, 255); box-sizing: border-box; color: rgb(51, 122, 183);">project’s website</a><span style="color: rgb(92, 92, 92);">.</span></p>`,
+        "content": ``,
         "date": new Date(),
         "images": [],
         "files": []
+    }
+    if (vm.appContext.isLocalhost) {
+
+        vm.data.title = `${$stateParams.sub_menu} - Test Title`; 
     }
 
     vm.deleteImage = function (index) {
@@ -82,7 +92,7 @@ app.controller('board.create.ctrl', function ($scope, $window, $rootScope, $stat
         }
 
 
-        if (vm.sub_menu.mustHaveImage && vm.data.images.length === 0) {
+        if (vm.sub_menu.imageRequired && vm.data.images.length === 0) {
                 toastr.error("이미지 파일을 추가해 주세요");
                 return;
         }

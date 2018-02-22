@@ -18,17 +18,17 @@ app.controller('board.page.ctrl', function ($scope, $rootScope, $window, $stateP
     vm.appContext = appContextService.context;
 
 
-    $scope.delete = function (id) {
+    vm.delete = function (id) {
 
         $ngConfirm({
             boxWidth: '30%',
             useBootstrap: false,
-            title: '삭제확인',
-            content: '삭제하시겠습니까?',
+            title: 'Delete confirm',
+            content: 'Delete it?',
             scope: $scope,
             buttons: {
                 confirm: {
-                    text: '삭제',
+                    text: 'delete',
                     btnClass: 'btn-blue',
                     action: function (scope, button) {
 
@@ -44,7 +44,7 @@ app.controller('board.page.ctrl', function ($scope, $rootScope, $window, $stateP
                     }
                 },
                 cancel: {
-                    text: '취소',
+                    text: 'cancel',
                     btnClass: 'btn-orange',
                     // action: function (scope, button) {
                     // }

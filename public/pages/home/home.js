@@ -1,27 +1,32 @@
 /**
  * Created by mac on 18/02/2017.
  */
-app.controller('home.ctrl', function ($scope, boardService, config) {
+app.controller('home.ctrl', function ($scope, boardService, appContextService) {
 
 
+    console.log('home ctrl')
 
-    $scope.apiUrl = vm.appContext.apiUrl;
-    $scope.myInterval = 3000;
-    $scope.noWrapSlides = false;
-    $scope.active = 0;
+    var vm = this;
+    vm.appContext = appContextService.context;
 
 
-    $scope.load = function (page) {
-        $scope.currentPage = page;
-        boardService.load('mlrn activities', 1, 5, '').then(
+    // vm.apiUrl = vm.appContext.apiUrl;
+    // vm.myInterval = 3000;
+    // vm.noWrapSlides = false;
+    // vm.active = 0;
+
+
+    vm.load = function (page) {
+        vm.currentPage = page;
+        boardService.load('banner', 1, 5, '').then(
             function (results) {
                 // console.log(results);
                 // console.log(results.data.list);
 
-                $scope.slides = results.data.list;
+                vm.slides = results.data.list;
                 // // slide가 int type id를 필요로 함
                 // var id = 0;
-                // $scope.slides.forEach(function (slide) {
+                // vm.slides.forEach(function (slide) {
                 //     slide.id = id;
                 //     id++;
                 // })
@@ -35,7 +40,7 @@ app.controller('home.ctrl', function ($scope, boardService, config) {
         boardService.load('notice', 1, 5, '').then(
             function (results) {
                 //   console.log(results);
-                $scope.notices = results.data.list;
+                vm.notice = results.data.list[0];
 
             },
             function (err) {
@@ -43,10 +48,10 @@ app.controller('home.ctrl', function ($scope, boardService, config) {
             }
         );
 
-        boardService.load('reports', 1, 4, '').then(
+        boardService.load('reports', 1, 1, '').then(
             function (results) {
                 //   console.log(results);
-                $scope.reports = results.data.list;
+                vm.report = results.data.list[0];
 
             },
             function (err) {
@@ -54,10 +59,10 @@ app.controller('home.ctrl', function ($scope, boardService, config) {
             }
         );
 
-        boardService.load('materials', 1, 4, '').then(
+        boardService.load('issue_brief', 1, 4, '').then(
             function (results) {
                 //   console.log(results);
-                $scope.materials = results.data.list;
+                vm.issue_brief = results.data.list[0];
 
             },
             function (err) {
@@ -65,94 +70,20 @@ app.controller('home.ctrl', function ($scope, boardService, config) {
             }
         );
 
+        boardService.load('activities', 1, 4, '').then(
+            function (results) {
+                //   console.log(results);
+                vm.activity = results.data.list[0];
+
+            },
+            function (err) {
+                console.log(err);
+            }
+        );
     }
 
     // initial load & reset
-    $scope.load($scope.currentPage);
-
-
-    // var slides = $scope.slides = [];
-    // var currIndex = 0;
-    //
-    // $scope.addSlide = function() {
-    //   var newWidth = 600 + slides.length + 1;
-    //   slides.push({
-    //     image: '//unsplash.it/' + newWidth + '/300',
-    //     text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
-    //     id: currIndex++
-    //   });
-    // };
-    //
-    // $scope.randomize = function() {
-    //   var indexes = generateIndexesArray();
-    //   assignNewIndexesToSlides(indexes);
-    // };
-    //
-    // for (var i = 0; i < 4; i++) {
-    //   $scope.addSlide();
-    // }
-    //
-    // console.log($scope.slides);
-    //
-    // // Randomize logic below
-    //
-    // function assignNewIndexesToSlides(indexes) {
-    //   for (var i = 0, l = slides.length; i < l; i++) {
-    //     slides[i].id = indexes.pop();
-    //   }
-    // }
-    //
-    // function generateIndexesArray() {
-    //   var indexes = [];
-    //   for (var i = 0; i < currIndex; ++i) {
-    //     indexes[i] = i;
-    //   }
-    //   return shuffle(indexes);
-    // }
-    //
-    // // http://stackoverflow.com/questions/962802#962890
-    // function shuffle(array) {
-    //   var tmp, current, top = array.length;
-    //
-    //   if (top) {
-    //     while (--top) {
-    //       current = Math.floor(Math.random() * (top + 1));
-    //       tmp = array[current];
-    //       array[current] = array[top];
-    //       array[top] = tmp;
-    //     }
-    //   }
-    //
-    //   return array;
-    // }
-
-    // Instantiate the Bootstrap carousel
-    // $('.multi-item-carousel').carousel({
-    //     // interval: 5000
-    //     interval: false
-    // });
-
-    $('#myCarousel').carousel({
-        interval: 5000
-    })
-
-    // // for every slide in carousel, copy the next slide's item in the slide.
-    // // Do the same for the next, next item.
-    // $('.multi-item-carousel .item').each(function () {
-    //     var next = $(this).next();
-    //     if (!next.length) {
-    //         next = $(this).siblings(':first');
-    //     }
-    //     next.children(':first-child').clone().appendTo($(this));
-
-    //     if (next.next().length > 0) {
-    //         next.next().children(':first-child').clone().appendTo($(this));
-    //     } else {
-    //         $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-    //     }
-    // });
-
-
+    vm.load(vm.currentPage);
 
     // $('#media').carousel({
     //     // pause: true,
@@ -160,8 +91,23 @@ app.controller('home.ctrl', function ($scope, boardService, config) {
     //     // interval: false,
     // });
 
+
+        $('#myCarousel').carousel({
+            interval: 5000
+        })
+
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
+        // $('[data-toggle="tooltip"]').tooltip()
+
+
+        // $('#myCarousel').on('slide', function (e) {
+        //     var slideFrom = $(this).find('.active').index();
+        //     var slideTo = $(e.relatedTarget).index();
+        //     console.log(slideFrom + ' => ' + slideTo);
+        // });
+
+
+
     })
 
 })

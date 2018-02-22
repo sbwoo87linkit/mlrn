@@ -1,0 +1,57 @@
+<form>
+    <div class="form-group" ng-if="vm.sub_menu.titleRequired">
+        <label for="noticeTitle">Title</label>
+        <input ng-model="vm.data.title" type="text" class="form-control" id="noticeTitle" placeholder="Title">
+    </div>
+    <div class="form-group" ng-if="vm.sub_menu.contentRequired">
+        <label for="noticeContent">Content</label>
+        <summernote ng-model="vm.data.content" height="300">
+            <span style="font-weight: bold;"></span>
+        </summernote>
+    </div>
+
+    <!-- <div ng-if="vm.sub_menu.imageRequired">
+        <div class="form-group">
+            <label for="boardImage">Images</label>
+            <input id="boardImage" class="form-control" onchange="angular.element(this).scope().imageChanged(this)" type="file" />
+        </div>
+        <div ng-repeat="image in vm.data.images" style="display: inline-block; width:200px; height: 160px;" class="text-right">
+            <div>
+                <button class="btn btn-xs btn-default" ng-click="vm.deleteImage($index)">Delete</button>
+            </div>
+            <img ng-src="{{vm.appContext.apiUrl + image.url}}" alt="" style="width:auto; height:120px; margin-top: 5px;">
+        </div>
+    </div> -->
+
+    <div class="w3-row w3-border-bottom w3-padding-bottom" ng-if="vm.sub_menu.imageRequired">
+        <strong>images</strong>
+        <input id="boardImage" class="form-control" onchange="angular.element(this).scope().imageChanged(this)" type="file" />
+        <div ng-repeat="image in vm.data.images">
+            <img ng-src="{{vm.appContext.apiUrl + image.url}}" alt="" style="height:30px">
+            <a ng-href="{{ vm.appContext.apiUrl + image.url }}" target="_blank">Download</a>
+        </div>
+    </div>
+
+
+
+    <div ng-if="vm.sub_menu.fileRequired">
+        <div class="form-group">
+            <label for="boardAttach">Files</label>
+            <input id="boardAttach" class="form-control" onchange="angular.element(this).scope().fileChanged(this)" type="file" />
+        </div>
+        <div ng-repeat="file in vm.data.files">
+            {{ file.url }} -
+            <button class="btn btn-xs btn-default" ng-click="vm.deleteFile($index)">Delete</button>
+        </div>
+
+    </div>
+
+
+</form>
+
+
+<div class="w3-right-align w3-padding">
+    <button class="w3-button w3-light-gray" ng-click="vm.goBack()">Back</button>
+    <button class="w3-button w3-green" ng-if="vm.isUploading">Uploading .... </button>
+    <button class="w3-button w3-green" ng-if="!vm.isUploading" ng-click="vm.save()">Save</button>
+</div>

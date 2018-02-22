@@ -4,13 +4,18 @@ app.controller('main.ctrl', function ($scope, userService, appContextService, to
     vm.appContext = appContextService.context;
     vm.appContext.appTitle = config.appTitle;
     vm.appContext.email = config.email;
-    vm.appContext.address = config.address;
+    vm.appContext.address1 = config.address1;
+    vm.appContext.address2 = config.address2;
     vm.appContext.apiUrl = config.apiUrl;
 
-    // console.log('config', config)
     vm.appContext.menuArray = config.menuArray;
+    if (!vm.appContext.user || vm.appContext.user.role != 'admin') {
+        _.remove(vm.appContext.menuArray, {
+            adminRequired: true
+        });
+    }
 
-    userService.list().then(function(res){
+    userService.list().then(function (res) {
         vm.appContext.users = res.data;
         if (!res.data.length) {
             toastr.info('ctrl. No admin users are registered.')
@@ -23,6 +28,9 @@ app.controller('main.ctrl', function ($scope, userService, appContextService, to
         vm.appContext.styleName = styleName + '.css';
     };
 
+    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+        vm.appContext.isLocalhost = true;
+    }
+
+
 })
-
-

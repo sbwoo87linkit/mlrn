@@ -91,20 +91,25 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
 			templateUrl: 'pages/board/page.html',
 			controller: 'board.page.ctrl as vm'
 		})
-		.state('board.create', {
-			url: '/create',
-			templateUrl: 'pages/board/create.html',
-			controller: 'board.create.ctrl as vm'
-		})
 		.state('board.view', {
 			url: '/view/:articleId',
 			templateUrl: 'pages/board/view.html',
 			controller: 'board.view.ctrl as vm'
 		})
-		.state('board.edit', {
-			url: '/edit/:articleId',
-			templateUrl: 'pages/board/edit.html',
-			controller: 'board.edit.ctrl as vm'
+		// .state('board.create', {
+		// 	url: '/create',
+		// 	templateUrl: 'pages/board/create.html',
+		// 	controller: 'board.create.ctrl as vm'
+		// })
+		// .state('board.edit', {
+		// 	url: '/edit/:articleId',
+		// 	templateUrl: 'pages/board/edit.html',
+		// 	controller: 'board.edit.ctrl as vm'
+		// })
+		.state('board.save', {
+			url: '/save/:articleId',
+			templateUrl: 'pages/board/save.html',
+			controller: 'board.save.ctrl as vm'
 		})
 
 
@@ -176,7 +181,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
 });
 
 
-app.run(function ($rootScope, $state, $stateParams, $http, $window, $auth, appContextService) {
+app.run(function ($rootScope, $state, $transitions, $stateParams, $http, $window, $auth, appContextService, config) {
 
 	appContextService.context.user = JSON.parse($window.localStorage.getItem('token'));
 	$rootScope.user = JSON.parse($window.localStorage.getItem('token'));
@@ -201,10 +206,10 @@ app.run(function ($rootScope, $state, $stateParams, $http, $window, $auth, appCo
 			}
 		});
 
-	$rootScope.$on('$stateChangeSuccess', function () {
+	$transitions.onSuccess({}, function () {
+		// 트랜지션 후, 스크롤 탑
 		document.body.scrollTop = document.documentElement.scrollTop = 0;
-	});
-
+	})
 })
 
 app.directive('fileUpload', function () {

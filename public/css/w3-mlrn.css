@@ -1,0 +1,23 @@
+.w3-mlrn-green, 
+.w3-mlrn-hover-green:hover {
+    color: #fff !important;
+    background-color: #558139 !important;
+}
+
+.w3-mlrn-text-green {
+    color: #558139;
+}
+
+/* .w3-pink,
+.w3-hover-pink:hover {
+    color: #fff !important;
+    background-color: #e91e63 !important
+} */
+
+  .w3-mlrn-bar-item:after {
+      content: "|";
+      margin: 0 0 0 0px;
+      color: #ccc;
+      opacity: 0.5;
+  }
+  

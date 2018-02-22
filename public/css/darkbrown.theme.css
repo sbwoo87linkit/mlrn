@@ -1,0 +1,14 @@
+ .w3-theme-background {
+     background-color: #5e0613;
+     border-color: #5e0613;
+ }
+
+ .w3-theme-text {
+     color: #5e0613;
+ }
+
+ .w3-theme-active {
+     background-color: #6e0716 !important;
+     border-color: #6e0716 !important;
+     color: #fff !important;
+ }

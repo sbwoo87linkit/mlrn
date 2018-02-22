@@ -1,4 +1,4 @@
-app.controller('signin.ctrl', function ($scope, $window, $rootScope, $state, $stateParams, appContextService, userService, toastr) {
+app.controller('signin.ctrl', function ($scope, $window, $rootScope, $state, $stateParams, appContextService, userService, toastr, config) {
 
     var vm = this;
     vm.appContext = appContextService.context;
@@ -26,11 +26,14 @@ app.controller('signin.ctrl', function ($scope, $window, $rootScope, $state, $st
                 var payload = JSON.parse(atob(token.split('.')[1]));
                 vm.appContext.user = payload;
                 $window.localStorage.setItem('token', JSON.stringify(payload));
+                vm.appContext.menuArray = config.menuArray;
 
 
-                //console.log(playload);
+
+                console.log('login success', vm.appContext.menuArray, config.menuArray);
+
                 // window.history.back();
-                $state.go('home')
+                $state.go('home', {}, { reload: true});
 
             },
             function (err) {
@@ -47,8 +50,9 @@ app.controller('signin.ctrl', function ($scope, $window, $rootScope, $state, $st
     vm.logout = function () {
         $window.localStorage.removeItem('token');
         vm.appContext.user = null;
-        // console.log("rootScope.user : " + vm.appContext.user);
-        toastr.success("You have logged out.");
+        vm.appContext.menuArray = angular.copy(config.menuArray); 
+        _.remove(vm.appContext.menuArray, {adminRequired : true});
+        // toastr.success("You have logged out.");
         $state.go('signin');
     }
 

@@ -1,20 +1,25 @@
-<h2 class="w3-theme-text"> {{ $stateParams.sub_menu | uppercase }} 
-</h2>
-
 <form>
 
-  <div class="form-group" ng-if="vm.sub_menu.mode != 'page'">
+  <div class="form-group" ng-if="vm.sub_menu.titleRequired">
     <label for="boardTitle">Title</label>
     <input ng-model="vm.data.title" type="text" class="form-control" id="boardTitle" placeholder="Title">
   </div>
-  <div class="form-group">
-    <label for="boardContent">Content</label>
-    <summernote ng-model="vm.data.content" height="300">
-      <span style="font-weight: bold;"></span>
-    </summernote>
+
+  <div ng-if="vm.sub_menu.contentRequired">
+    <div ng-if="vm.sub_menu.htmlEdit" class="form-group">
+      <label for="boardContent">Content</label>
+      <summernote ng-model="vm.data.content" height="300">
+        <span style="font-weight: bold;"></span>
+      </summernote>
+    </div>
+    <div ng-if="!vm.sub_menu.htmlEdit" class="form-group">
+      <label for="boardContent">Content</label>
+      <textarea ng-model="vm.data.content" class="form-control" placeholder="Content">
+      </textarea>
+    </div>
   </div>
 
-  <div ng-if="vm.sub_menu.mode != 'page'">
+  <div ng-if="vm.sub_menu.imageRequired">
     <div class="form-group">
       <label for="boardImage">Image</label>
       <input id="boardImage" class="form-control" onchange="angular.element(this).scope().imageChanged(this)" type="file" />
@@ -23,10 +28,12 @@
       <div>
         <button class="btn btn-xs btn-default" ng-click="vm.deleteImage($index)">삭제</button>
       </div>
-      <!-- {{vm.appContext.apiUrl}} - {{image.url}} -->
       <img ng-src="{{vm.appContext.apiUrl + image.url}}" alt="" style="width:auto; height:120px; margin-top: 5px;">
     </div>
 
+  </div>
+
+  <div ng-if="vm.sub_menu.fileRequired">
     <div class="form-group">
       <label for="boardAttach">File</label>
       <input id="boardAttach" class="form-control" onchange="angular.element(this).scope().fileChanged(this)" type="file" />

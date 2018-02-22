@@ -1,8 +1,6 @@
-<h2 class="w3-theme-text"> {{ $stateParams.sub_menu | uppercase }}</h2>
+<p ng-if="!vm.item" class="w3-border w3-light-gray w3-padding">No data.</p>
 
-<p ng-if="!vm.item" class="bg-warning w3-padding">No data.</p>
-
-<div ng-bind-html="vm.item.content" style="min-height:300px;white-space: pre-line; font-size: small; margin-top: 0px">
+<div ng-if="vm.item" ng-bind-html="vm.item.content" style="white-space: pre-line; font-size: small; margin-top: 0px">
 </div>
 
 <div class="row bottom-line" ng-if="vm.item.images.length">
@@ -30,35 +28,13 @@
 
 
 
-<div class="text-right">
-    <button type="button" style="margin-left: 20px;" class="btn btn-success" ng-if="!vm.item && vm.appContext.user.role === 'admin'" ui-sref="board.create({'articleType': $stateParams.articleType})">
+<div ng-if="vm.appContext.user.role === 'admin'" class="text-right w3-border-top w3-padding">
+    <button type="button" style="margin-left: 20px;" class="w3-button w3-green" ng-if="!vm.item"
+        ui-sref="board.create({'articleType': $stateParams.articleType})">
         New
     </button>
     <!-- <button class="btn btn-default" ng-click="goBack()">Back</button> -->
-    <button class="btn btn-primary" ng-if="vm.item && vm.appContext.user.role === 'admin'" ui-sref="board.edit( {'articleType':$stateParams.articleType, 'articleId':vm.item._id })">Edit
+    <button class="w3-button w3-green" ng-if="vm.item" ui-sref="board.edit( {'articleType':$stateParams.articleType, 'articleId':vm.item._id })">Edit
     </button>
-    <button class="btn btn-danger" ng-if="vm.item && vm.appContext.user.role === 'admin'" ng-click="delete(vm.item._id)">Delete</button>
+    <button class="w3-button w3-red" ng-if="vm.item" ng-click="vm.delete(vm.item._id)">Delete</button>
 </div>
-
-<!-- <div disqus="id"></div> -->
-
-<!-- <div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-
-            <div class="modal-header bg-primary">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">확인</h4>
-            </div>
-            <div class="modal-body">
-                <h4>삭제하시겠습니까?</h4>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="delete()">삭제</button>
-            </div>
-
-        </div>
-    </div>
-</div> -->

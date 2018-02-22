@@ -3,6 +3,23 @@ app.controller('board.view.ctrl', function ($scope, $rootScope, $window, $stateP
 
     var vm = this;
     vm.appContext = appContextService.context;
+
+    var main_menu = vm.appContext.menuArray.find(function (menu) {
+        return menu.name === $stateParams.main_menu;
+    });
+
+    if (main_menu) {
+        vm.sub_menu = main_menu.list.find(function (menu) {
+            return menu.name === $stateParams.sub_menu;
+        });
+    }
+
+    if (!vm.sub_menu) {
+        toastr.error('vm.sub_menu not defined.')
+        return;
+    }
+
+
     vm.delete = function () {
 
         $ngConfirm({
