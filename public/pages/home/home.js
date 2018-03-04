@@ -18,19 +18,37 @@ app.controller('home.ctrl', function ($scope, boardService, appContextService) {
 
     vm.load = function (page) {
         vm.currentPage = page;
-        boardService.load('banner', 1, 5, '').then(
+        boardService.load('main_banner', 1, 5, '').then(
             function (results) {
-                // console.log(results);
-                // console.log(results.data.list);
-
                 vm.slides = results.data.list;
-                // // slide가 int type id를 필요로 함
-                // var id = 0;
-                // vm.slides.forEach(function (slide) {
-                //     slide.id = id;
-                //     id++;
-                // })
-
+                if (vm.slides.length) {
+                    $('#bannerCarousel').carousel({
+                        interval: 5000
+                    })
+                }
+            },
+            function (err) {
+                console.log(err);
+            }
+        );
+        boardService.load('link_banner', 1, 100, '').then(
+            function (results) {
+                // vm.links = results.data.list;
+                vm.links = [];
+                let count = 5;
+                for (let i =0; i < results.data.list.length; i++) {
+                    if (i % count === 0) {
+                        vm.links.push([]);
+                    }
+                    // console.log('vm.links', vm.links)
+                    vm.links[Math.floor(i/count)].push(results.data.list[i]);
+                }
+                console.log('vm.links', vm.links)
+                if (vm.links.length) {
+                    $('#linkCarousel').carousel({
+                        interval: 5000
+                    })
+                }
             },
             function (err) {
                 console.log(err);
@@ -92,9 +110,6 @@ app.controller('home.ctrl', function ($scope, boardService, appContextService) {
     // });
 
 
-        $('#myCarousel').carousel({
-            interval: 5000
-        })
 
     $(function () {
         // $('[data-toggle="tooltip"]').tooltip()

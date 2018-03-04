@@ -37,6 +37,8 @@ app.controller('board.list.ctrl', function ($scope, $rootScope, $window, $stateP
             function (res) {
                 // console.log('res', res);
                 vm.items = res.data.list;
+                vm.item = vm.items[0];
+                vm.tabId = vm.item._id;
                 // vm.items = res.data;
                 // console.log('res....', res)
                 vm.pagination.totalItems = res.data.count;

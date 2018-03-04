@@ -1,11 +1,19 @@
-.w3-mlrn-green, 
-.w3-mlrn-hover-green:hover {
+.w3-mlrngreen,
+.w3-hover-mlrngreen:hover {
     color: #fff !important;
     background-color: #558139 !important;
 }
 
-.w3-mlrn-text-green {
+.w3-text-mlrngreen {
     color: #558139;
+}
+
+/* .w3-text-mlrngreen {
+    color: #558139;
+} */
+.w3-border-mlrngreen,
+.w3-hover-border-mlrngreen:hover {
+    border-color: #558139 !important;
 }
 
 /* .w3-pink,

@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="app" ng-controller="main.ctrl as vm">
+<html ng-app="app" ng-controller="main.ctrl as vm" ng-cloak>
 
 <head>
 
@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>web board</title>
+  <title ng-bind="vm.appContext.pageTitle">Loading...</title>
 
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="node_modules/angular-confirm1/dist/angular-confirm.min.css" />
@@ -65,15 +65,17 @@
   <script src="pages/board/view.js"></script>
 </head>
 
-<body>
+<body ng-click="vm.activeMenu = ''" ng-cloak>
+
+
   <div ng-include="'pages/header.html'"></div>
-  <div class="container">
-    <div class="row">
+  <div class="w3-content" style="max-width:1100px;margin-top:20px;margin-bottom:0px">
+    <div>
       <div ng-if="!$state.is('home') && !$state.is('signin') && !$state.is('signup')" class="col-md-2" ng-include="'pages/sidebar.html'"></div>
       <div class="" ng-class="($state.is('home') || $state.is('signin') || $state.is('signup')) ? 'col-md-12' : 'col-md-10'">
           <!-- <h2 class="w3-theme-text"> {{ $stateParams.sub_menu | uppercase }}
           </h2> -->
-        <div ui-view class="content"></div>
+        <div ui-view></div>
       </div>
     </div>
   </div>

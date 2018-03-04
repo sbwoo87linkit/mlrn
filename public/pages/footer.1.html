@@ -1,10 +1,10 @@
 <style>
     .dropbtn {
-        /* background-color: #f1f1f1; */
-        /* color: white; */
-        padding: 8px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
         font-size: 16px;
-        border: 1px solid #ccc;
+        border: none;
     }
 
     .dropup {
@@ -15,12 +15,10 @@
     .dropup-content {
         display: none;
         position: absolute;
-        /* background-color: #f1f1f1; */
+        background-color: #f1f1f1;
         min-width: 160px;
-        bottom: 40px;
+        bottom: 50px;
         z-index: 1;
-        border: 1px solid #ccc;
-        background: #fff;
     }
 
     .dropup-content a {
@@ -30,41 +28,24 @@
         display: block;
     }
 
-    /* .dropup-content a:hover {
-        background-color: #ddd
-    } */
+    .dropup-content a:hover {
+        background-color: #ccc
+    }
 
     .dropup:hover .dropup-content {
         display: block;
     }
 
     .dropup:hover .dropbtn {
-        background-color: #ccc;
+        background-color: #3e8e41;
     }
 </style>
 
-<!-- <div class="w3-content w3-margin-top w3-pink" style="max-width:1100px;margin-top:20px;margin-bottom:0px">
-    <div class="w3-panel">
-        <a href="" ui-sref="home" style="text-decoration:none">
-            <span class="w3-text-mlrngreen" style="font-size:1.4em;font-weight:400">{{vm.appContext.appTitle}}</span>
-        </a>
-        <div class="w3-right">
-
-        </div>
-    </div>
-</div> -->
-
-
-
-<!-- <div class="w3-container w3-mlrngreen">
-    footer
-</div> -->
-
-<div class="w3-content"  style="max-width:1100px;margin-top:20px;margin-bottom:0px">
-    <div class="w3-container">
+<div class="w3-text-gray">
+    <div class="container">
         <!-- <hr/> -->
-        <div class="w3-margin-top w3-padding-16 w3-border-top ">
-            <div class="w3-left" style="font-size:0.9em">
+        <div class="w3-row w3-margin-top w3-padding-16 w3-border-top ">
+            <div class="w3-col m8 l9" style="font-size:0.9em">
 
                 <div class="roboto">
                     <a href="" ui-sref="home">
@@ -77,7 +58,7 @@
 
 
             </div>
-            <div class="w3-right">
+            <div class="w3-col m4 l3">
 
                 <!-- <div class="dropup">
                     <div style="width:200px" class="w3-white w3-border dropdown-toggle" data-toggle="dropdown">
@@ -97,11 +78,11 @@
 
 
                 <div class="dropup">
-                    <button class="dropbtn" style="width:250px;">Related Links<i style="float:right" class="fas fa-angle-up"></i></button>
-                    <div class="dropup-content w3-hover-gray" style="width:100%">
-                        <a href="http://ojeri.korea.ac.kr/" target="_blank"> <strong>OJERI</strong><br> OJeong Eco-Resilience Institute</a>
-                        <!-- <a href="#">Link 2</a>
-                        <a href="#">Link 3</a> -->
+                    <button class="dropbtn">Dropup looooooooooooong menu</button>
+                    <div class="dropup-content" style="width:100%">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
                     </div>
                 </div>
 

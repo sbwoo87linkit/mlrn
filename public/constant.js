@@ -1,21 +1,21 @@
 app.constant('config', {
     appName: 'My App',
     appVersion: 1.0,
+    pageTitle: 'MLRN',
     appTitle: 'Mid-Latitude Region Network',
     email: 'mlrn_ojeri@korea.ac.kr',
     address1: '(02841) #317, East Bldg., College of Life Science, Korea University,',
     address2: 'Anam-ro 145, Seongbuk-gu, Seoul , KOREA',
     // apiUrl: 'http://127.0.0.1:1337',
     apiUrl: 'http://ec2-13-125-112-144.ap-northeast-2.compute.amazonaws.com',
-    menuArray: [
-        {
+    menuArray: [{
             name: 'about',
             title: 'ABOUT',
             activeIndex: 0,
             list: [{
                     name: 'mlrn',
-                    title: 'MLRN?',
-                    mode: 'page', 
+                    title: 'MLRN',
+                    mode: 'page',
                     showTitle: false,
                     titleRequired: false,
                     contentRequired: true,
@@ -35,7 +35,7 @@ app.constant('config', {
                 },
                 {
                     name: 'contact',
-                    title: 'CONTACT',
+                    title: 'CONTACT US',
                     mode: 'page',
                     titleRequired: false,
                     contentRequired: true,
@@ -70,8 +70,8 @@ app.constant('config', {
                     fileRequired: false,
                 },
                 {
-                    name: 'by_program',
-                    title: 'By PROGRAM',
+                    name: 'group_networks',
+                    title: 'GROUP NETWORKS',
                     mode: 'page',
                     titleRequired: false,
                     contentRequired: true,
@@ -79,6 +79,16 @@ app.constant('config', {
                     imageRequired: false,
                     fileRequired: false,
                 },
+                // {
+                //     name: 'by_program',
+                //     title: 'By PROGRAM',
+                //     mode: 'page',
+                //     titleRequired: false,
+                //     contentRequired: true,
+                //     htmlEdit: true,
+                //     imageRequired: false,
+                //     fileRequired: false,
+                // },
                 {
                     name: 'join_us',
                     title: 'JOIN US',
@@ -97,8 +107,8 @@ app.constant('config', {
             title: 'FOCUS',
             activeIndex: 0,
             list: [{
-                    name: 'wfe_nexus',
-                    title: 'WFE NEXUS',
+                    name: 'nexus',
+                    title: 'NEXUS',
                     mode: 'page',
                     titleRequired: false,
                     contentRequired: true,
@@ -107,10 +117,21 @@ app.constant('config', {
                     fileRequired: false,
                 },
                 {
-                    name: 'thematic_group',
-                    title: 'THEMATIC GROUP',
+                    name: 'thematic_groups',
+                    title: 'THEMATIC GROUPS',
                     mode: 'page',
                     titleRequired: false,
+                    contentRequired: true,
+                    htmlEdit: true,
+                    imageRequired: false,
+                    fileRequired: false,
+                },
+                {
+                    name: 'meeting_outcomes',
+                    title: 'MEETING OUTCOMES',
+                    mode: 'board',
+                    isTabList: true,
+                    titleRequired: true,
                     contentRequired: true,
                     htmlEdit: true,
                     imageRequired: false,
@@ -119,42 +140,42 @@ app.constant('config', {
             ]
         },
 
-        {
-            name: 'mlr_info',
-            title: 'MLR INFO',
-            activeIndex: 0,
-            list: [{
-                    name: 'mlr_info',
-                    title: 'MLR INFO',
-                    mode: 'board',
-                    showContentInList: false,
-                    titleRequired: true,
-                    contentRequired: true,
-                    htmlEdit: true,
-                    imageRequired: false,
-                    fileRequired: false,
-                },
-                {
-                    name: 'issue_brief',
-                    title: 'ISSUE BRIEF',
-                    mode: 'board',
-                    showContentInList: true,
-                    titleRequired: true,
-                    contentRequired: true,
-                    htmlEdit: true,
-                    imageRequired: false,
-                    fileRequired: false,
-                },
-            ]
-        },
+        // {
+        //     name: 'mlr_info',
+        //     title: 'MLR INFO',
+        //     activeIndex: 0,
+        //     list: [{
+        //             name: 'mlr_info',
+        //             title: 'MLR INFO',
+        //             mode: 'board',
+        //             showContentInList: false,
+        //             titleRequired: true,
+        //             contentRequired: true,
+        //             htmlEdit: true,
+        //             imageRequired: false,
+        //             fileRequired: false,
+        //         },
+        //         {
+        //             name: 'issue_brief',
+        //             title: 'ISSUE BRIEF',
+        //             mode: 'board',
+        //             showContentInList: true,
+        //             titleRequired: true,
+        //             contentRequired: true,
+        //             htmlEdit: true,
+        //             imageRequired: false,
+        //             fileRequired: false,
+        //         },
+        //     ]
+        // },
 
         {
             name: 'resources',
             title: 'RESOURCES',
             activeIndex: 0,
             list: [{
-                    name: 'reports',
-                    title: 'REPORTS',
+                    name: 'reports_papers',
+                    title: 'REPORTS & PAPERS',
                     mode: 'board',
                     showContentInList: false,
                     titleRequired: true,
@@ -164,8 +185,8 @@ app.constant('config', {
                     fileRequired: true,
                 },
                 {
-                    name: 'materials',
-                    title: 'MATERIALS',
+                    name: 'events',
+                    title: 'EVENTS',
                     mode: 'board',
                     showContentInList: false,
                     titleRequired: true,
@@ -177,12 +198,12 @@ app.constant('config', {
             ]
         },
 
-/*
+        /*
 
-NOTICE 게시판은 제목/날짜/no. 등 기본정보만 보이는 리스트형 게시판 (내용노출X)
-MLRN Activities, Issue Brief 게시판 스타일: 제목/ 내용 일부/ 만 보이도록 깔끔하게
+        NOTICE 게시판은 제목/날짜/no. 등 기본정보만 보이는 리스트형 게시판 (내용노출X)
+        MLRN Activities, Issue Brief 게시판 스타일: 제목/ 내용 일부/ 만 보이도록 깔끔하게
 
-*/
+        */
 
 
         {
@@ -204,7 +225,7 @@ MLRN Activities, Issue Brief 게시판 스타일: 제목/ 내용 일부/ 만 보
                     name: 'activities',
                     title: 'ACTIVITIES',
                     mode: 'board',
-                    showContentInList : true,
+                    showContentInList: true,
                     titleRequired: true,
                     contentRequired: true,
                     htmlEdit: true,
@@ -214,21 +235,34 @@ MLRN Activities, Issue Brief 게시판 스타일: 제목/ 내용 일부/ 만 보
             ]
         },
         {
-            name: 'settings',
+            name: 'SETTINGS',
             title: 'SETTINGS',
             activeIndex: 0,
             adminRequired: true,
             list: [{
-                name: 'banner',
-                title: 'BANNER',
-                mode: 'board',
-                showContentInList: false,
-                titleRequired: true,
-                contentRequired: false,
-                htmlEdit: false,
-                imageRequired: true,
-                fileRequired: false,
-            }, ]
+                    name: 'main_banner',
+                    title: 'MAIN BANNER',
+                    mode: 'board',
+                    showContentInList: false,
+                    titleRequired: true,
+                    contentRequired: false,
+                    htmlEdit: false,
+                    imageRequired: true,
+                    fileRequired: false,
+                },
+                {
+                    name: 'link_banner',
+                    title: 'LINK BANNER',
+                    mode: 'board',
+                    showContentInList: false,
+                    titleRequired: true,
+                    contentRequired: false,
+                    urlRequired: true,
+                    htmlEdit: false,
+                    imageRequired: true,
+                    fileRequired: false,
+                },
+            ]
         },
     ],
 });

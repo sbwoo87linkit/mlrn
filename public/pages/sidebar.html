@@ -5,20 +5,20 @@
 
           <a ng-repeat="item in menu.list" href="" ng-click="$event.stopPropagation()" 
           ui-sref="{{ item.mode==='board' ? 'board.list({main_menu: menu.name,sub_menu:item.name})' : 'board.page({main_menu: menu.name,sub_menu:item.name})'
-      }}" ng-class="{'w3-mlrn-green':$stateParams.sub_menu === item.name, 'w3-hover-white':$stateParams.sub_menu != item.name, 'w3-mlrn-hover-green':$stateParams.sub_menu == item.name}" 
+      }}" ng-class="{'w3-mlrngreen':$stateParams.sub_menu === item.name, 'w3-hover-white':$stateParams.sub_menu != item.name, 'w3-hover-mlrngreen':$stateParams.sub_menu == item.name}" 
       class="w3-left-align w3-block w3-button w3-border-bottom w3-border-gray w3-white">{{item.title}}</a>
 
 </div> -->
 
 
-<div ng-if="$stateParams.main_menu === menu.name" ng-repeat="menu in vm.appContext.menuArray">
+<div class="w3-margin-bottom" ng-if="$stateParams.main_menu === menu.name" ng-repeat="menu in vm.appContext.menuArray">
   <div class="w3-margin-bottom">
     <h5 class="w3-center">{{menu.title}}</h5>
   </div>
 
-          <a ng-repeat="item in menu.list" href="" ng-click="$event.stopPropagation()" 
+          <a ng-repeat="item in menu.list" href="" ng-click="vm.activeMenu=''; $event.stopPropagation()" 
           ui-sref="{{ item.mode==='board' ? 'board.list({main_menu: menu.name,sub_menu:item.name})' : 'board.page({main_menu: menu.name,sub_menu:item.name})'
-      }}" ng-class="{'w3-mlrn-green':$stateParams.sub_menu === item.name, 'w3-hover-white':$stateParams.sub_menu != item.name, 'w3-mlrn-hover-green':$stateParams.sub_menu == item.name, 'w3-border-top' : $index==0}" 
+      }}" ng-class="{'w3-mlrngreen':$stateParams.sub_menu === item.name, 'w3-hover-white':$stateParams.sub_menu != item.name, 'w3-hover-mlrngreen':$stateParams.sub_menu == item.name, 'w3-border-top' : $index==0}" 
       class="w3-left-align w3-block w3-button w3-border-bottom  w3-border-gray w3-white">{{item.title}}</a>
 
 </div>

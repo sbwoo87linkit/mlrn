@@ -2,13 +2,14 @@ app.controller('main.ctrl', function ($scope, userService, appContextService, to
 
     var vm = this;
     vm.appContext = appContextService.context;
+    vm.appContext.pageTitle = config.pageTitle;
     vm.appContext.appTitle = config.appTitle;
     vm.appContext.email = config.email;
     vm.appContext.address1 = config.address1;
     vm.appContext.address2 = config.address2;
     vm.appContext.apiUrl = config.apiUrl;
 
-    vm.appContext.menuArray = config.menuArray;
+    vm.appContext.menuArray = angular.copy(config.menuArray);
     if (!vm.appContext.user || vm.appContext.user.role != 'admin') {
         _.remove(vm.appContext.menuArray, {
             adminRequired: true

@@ -1,5 +1,3 @@
-<!-- <div class="w3-pink">aa{{vm.sub_menu}}</div> -->
-
 <div class="row">
     <div class="col-lg-6"></div>
     <div class="col-lg-6 text-right">
@@ -8,21 +6,34 @@
         </button>
     </div>
 </div>
+
+<div ng-if="vm.sub_menu.isTabList">
+    <div class="w3-bar">
+        <button ng-repeat="item in vm.items" style="border-radius: 10px 10px 0 0; margin-left:4px; padding: 4px 24px;" class="w3-border w3-border-mlrngreen w3-bar-item w3-btn"
+            ng-class="{'w3-mlrngreen' : vm.tabId===item._id }" ng-click="vm.item = item; vm.tabId = item._id">{{item.title}}</button>
+    </div>
+
+    <div class="w3-container w3-margin-bottom" style="border-top:1px solid #558139; margin-top:-1px">
+        <p ng-bind-html="vm.item.content" style="white-space: pre-line; font-size: small; margin-top: 0px">
+        </p>
+    </div>
+</div>
+
+
 <table class="table table-hover w3-margin-top" ng-if="vm.items.length">
     <tr ng-repeat="item in vm.items" ui-sref="board.view({'articleType': item.articleType, 'articleId':item._id})" style="cursor:pointer">
         <td style="white-space:nowrap">{{item.date | date : "y.MM.dd HH:mm"}}</td>
         <td style="width:100%">
             {{item.title}}
             <!-- <div ng-if="vm.sub_menu.showContentInList">{{item.content}}</div> -->
-                <div ng-if="vm.sub_menu.showContentInList" ng-bind-html="item.content" style="white-space: pre-line; font-size: small; margin-top: 0px">
-                </div>
-
+            <div ng-if="vm.sub_menu.showContentInList" ng-bind-html="item.content" style="white-space: pre-line; font-size: small; margin-top: 0px">
+            </div>
         </td>
     </tr>
 </table>
 
-<paging page="vm.pagination.currentPage" paging-action="load(page)" page-size="vm.pagination.itemsPerPage" total="vm.pagination.totalItems" show-prev-next="true"
-    show-first-last="true">
+<paging page="vm.pagination.currentPage" paging-action="load(page)" page-size="vm.pagination.itemsPerPage" total="vm.pagination.totalItems"
+    show-prev-next="true" show-first-last="true">
 </paging>
 
-<p ng-if="!vm.items.length" class="bg-warning w3-padding">No data.</p>
+<p ng-if="!vm.items.length" class="w3-padding w3-border">No data.</p>
