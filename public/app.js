@@ -21,7 +21,8 @@ var interceptor = function ($q, $location) {
 }
 
 var app = angular.module('app', ['ui.router', 'ngSanitize', 'satellizer',
-	'toastr', 'ngAnimate', 'ngDisqus', 'bw.paging', 'cp.ngConfirm', 'summernote'
+	'toastr', 'ngAnimate', 'ngDisqus', 'bw.paging', 'cp.ngConfirm', 'summernote',
+	'slick'
 ]);
 
 

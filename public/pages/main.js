@@ -33,11 +33,9 @@ app.controller('main.ctrl', function ($scope, userService, boardService, appCont
         vm.appContext.isLocalhost = true;
     }
 
-    $scope.main = {};
-
     boardService.list('related_links', 1, 100, -1, '').then(
         function (results) {
-            $scope.main.relatedLinks = results.data.list;
+            vm.appContext.relatedLinks = results.data.list;
         },
         function (err) {
             console.log(err);

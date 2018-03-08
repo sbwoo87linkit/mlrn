@@ -31,7 +31,7 @@
 <div ng-if="!vm.sub_menu.isTabList">
     <table class="table table-hover w3-margin-top" ng-if="vm.items.length">
         <tr ng-repeat="item in vm.items" ui-sref="board.view({'articleType': item.articleType, 'articleId':item._id})" style="cursor:pointer">
-            <td style="white-space:nowrap">
+            <td style="white-space:nowrap; padding-bottom:10px">
                 <div>{{item.date | date : "yyyy.MM.dd HH:mm"}}</div>
                 <div ng-if="item.images[0].filename"><img class="w3-border w3-padding-small" ng-src="{{vm.appContext.apiUrl + '/files/' + item.images[0].filename}}" alt="" style="max-width:100%;"></div>
                 <div ng-if="!item.images[0].filename">
@@ -42,7 +42,8 @@
                 </div>
             </td>
             <td style="width:100%">
-                <strong>{{item.title}}</strong>
+                <div class="w3-text-gray">{{item.url}}</div>
+                <strong class="w3-text-gray">{{item.title}}</strong>
                 <!-- <div ng-if="vm.sub_menu.showContentInList">{{item.content}}</div> -->
                 <div ng-if="vm.sub_menu.showContentInList" ng-bind-html="item.content" 
                 style="height: 4em;line-height: 1em;overflow:hidden; white-space: pre-line; font-size:medium; margin-top: 0px">

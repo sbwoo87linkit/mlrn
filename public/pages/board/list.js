@@ -46,9 +46,9 @@ app.controller('board.list.ctrl', function ($scope, $rootScope, $window, $stateP
                 // console.log('res....', res)
                 vm.pagination.totalItems = res.data.count;
                 if ($stateParams.sub_menu === 'related_links') {
-                    console.log('related_links......', $scope.main.relatedLinks);
-                    $scope.main.relatedLinks = vm.items;
-                    console.log('related_links......', $scope.main.relatedLinks);
+                    console.log('related_links......', vm.appContext.relatedLinks);
+                    vm.appContext.relatedLinks = vm.items;
+                    console.log('related_links......', vm.appContext.relatedLinks);
                 }
             },
             function (err) {

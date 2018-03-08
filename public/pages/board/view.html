@@ -26,7 +26,11 @@
                     <td style="width:10%">
                         <img ng-src="{{vm.appContext.apiUrl + '/files/' + file.filename}}" alt="" style="max-height:25px;">
                     </td>
-                    <td style="width:80%">{{file.originalname}}</td>
+                    <td style="width:80%">
+                        <a class="w3-padding-small" ng-href="{{ vm.appContext.apiUrl + '/files/' + file.filename }}" target="_blank">
+                            {{file.originalname}}
+                        </a>
+                    </td>
                     <td style="width:10%">
                         <a class="w3-button w3-small w3-padding-small" ng-href="{{ vm.appContext.apiUrl + '/files/' + file.filename }}" download="download">Download
                             <i class="fas fa-download"></i>
@@ -44,7 +48,11 @@
                     <td style="width:10%">
                         <img ng-if="file.thumbnail" ng-src="{{vm.appContext.apiUrl + '/files/' + file.thumbnail}}" alt="" style="max-height:25px;">
                     </td>
-                    <td style="width:80%">{{file.originalname}}</td>
+                    <td style="width:80%">
+                        <a class="w3-padding-small" ng-href="{{ vm.appContext.apiUrl + '/files/' + file.filename }}" target="_blank">
+                            {{file.originalname}}
+                        </a>
+                    </td>
                     <td style="width:10%">
                         <a class="w3-button w3-small w3-padding-small" ng-href="{{ vm.appContext.apiUrl + '/files/' + file.filename }}"
                             download="download">Download

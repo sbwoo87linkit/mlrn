@@ -191,4 +191,41 @@ app.controller('home.ctrl', function ($scope, boardService, appContextService) {
     vm.getBanners(vm.currentPage);
 
 
+
+
+
+    // var responsive = this;
+    vm.ngIncludeTemplates = [{ index: 0, name: 'first', url: 'firstSwipe.html' }, { index: 1, name: 'second', url: 'secondSwipe.html' }, { index: 2, name: 'third', url: 'thirdSwipe.html' }, { index: 3, name: 'fourth', url: 'fourthSwipe.html' }];
+    vm.selectPage = selectPage;
+
+    /**
+    * Initialize with the first page opened
+    */
+    vm.ngIncludeSelected = vm.ngIncludeTemplates[0];
+
+    /**
+    * @name selectPage
+    * @desc The function that includes the page of the indexSelected
+    * @param indexSelected the index of the page to be included
+    */
+    function selectPage(indexSelected) {
+        if (vm.ngIncludeTemplates[indexSelected].index > vm.ngIncludeSelected.index) {
+            vm.moveToLeft = false;
+        } else {
+            vm.moveToLeft = true;
+        }
+        vm.ngIncludeSelected = vm.ngIncludeTemplates[indexSelected];
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 })

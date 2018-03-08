@@ -60,33 +60,19 @@
 <!-- menu links -->
 <table class="w3-margin-top" style="width:100%">
     <tr>
-        <td ng-repeat="item in vm.menus" ui-sref="board.page({main_menu: item.main_menu,sub_menu:item.sub_menu})" 
-        class="w3-mlrngreen w3-center" style="padding:10px; cursor:pointer; width:25%;border:2px solid #fff">
+        <td ng-repeat="item in vm.menus" ui-sref="board.page({main_menu: item.main_menu,sub_menu:item.sub_menu})" class="w3-mlrngreen w3-center"
+            style="padding:10px; cursor:pointer; width:25%;border:2px solid #fff">
             {{item.title}}
         </td>
     </tr>
 </table>
 
 
-<!-- sub banner (related links) -->
-<div class="w3-row w3-margin-top">
-    <div class="w3-col" style="width:5%">
-        <button ng-disabled="true" ng-click="vm.next(-1)" class="w3-button w3-padding-small">&lang;</button>
-    </div>
-    <div class="w3-col" style="width:90%">
-        <div class="w3-row-padding">
-            <div ng-repeat="item in vm.links"
-             class="w3-col w3-center" style="width:16.6%; height:60px; padding:4px; ">
-                <div style="border: 1px solid #ccc">
-                    <a ng-href="{{item.url}}" target="_blank">
-                        <img class="w3-grayscale-max" ng-src="{{vm.appContext.apiUrl + '/files/' + item.images[0].filename}}" alt="" style="width:100%; max-height:60px; padding: 6px">
-                    </a>
-                </div>
-            </div>
+<!-- link banner -->
+    <slick lazy-load="ondemand" init-onload="true" data="vm.links" dots="false" infinite="true" speed="300" slides-to-show="5" slides-to-scroll="1" touch-move="false" class="w3-margin-top" style="margin-right:1px;">
+        <div ng-repeat="item in vm.links" class="w3-border w3-padding-small w3-center" style="margin:0 4px;">
+            <a ng-href="{{item.url}}" target="_blank">
+                <img class="w3-grayscale-max" ng-src="{{vm.appContext.apiUrl + '/files/' + item.images[0].filename}}" alt="" style="height:30px; margin-bottom:0px;">
+            </a>
         </div>
-
-    </div>
-    <div class="w3-col" style="width:5%">
-        <button ng-click="vm.next(-1)" class="w3-button w3-padding-small w3-right">&rang;</button>
-    </div>
-</div>
+    </slick>

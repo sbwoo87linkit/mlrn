@@ -486,3 +486,15 @@ div.tooltip-inner {
 .pagination>.active>a {
   background:#558139 !important;
 }
+
+
+.slick-prev:before,
+.slick-next:before {
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 1;
+  opacity: .75;
+  color: #ddd;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
