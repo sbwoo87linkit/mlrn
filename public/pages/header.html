@@ -18,20 +18,20 @@
 
 <div class="w3-content" style="max-width:990px;margin-top:20px;margin-bottom:0px">
   <div class="w3-row-padding">
-  <div class="roboto w3-col m12">
-    <a href="" ui-sref="home" style="text-decoration:none">
-      <span class="w3-text-mlrngreen" style="font-size:2em">{{vm.appContext.appTitle}}</span>
-    </a>
-    <div class="w3-right">
-      <a href="" ng-if="!vm.appContext.user && vm.appContext.users.length>0" ui-sref="signin" class="w3-bar-item w3-padding-left">
-        Sign-in</a>
-      <a href="" ng-if="vm.appContext.users.length === 0" ui-sref="signup" class="w3-bar-item w3-padding-left">
-        Sign-up</a>
-      <a href="" ng-if="vm.appContext.user" ng-controller="signin.ctrl as vm" ng-click="vm.logout()" class="w3-bar-item w3-padding-left">
-        Sign-out</a>
+    <div class="roboto w3-col m12">
+      <a href="" ui-sref="home" style="text-decoration:none">
+        <span class="w3-text-mlrngreen" style="font-size:2em">{{vm.appContext.appTitle}}</span>
+      </a>
+      <div class="w3-right">
+        <a href="" ng-if="!vm.appContext.user && vm.appContext.users.length>0" ui-sref="signin" class="w3-bar-item w3-padding-left">
+          Sign-in</a>
+        <a href="" ng-if="vm.appContext.users.length === 0" ui-sref="signup" class="w3-bar-item w3-padding-left">
+          Sign-up</a>
+        <a href="" ng-if="vm.appContext.user" ng-controller="signin.ctrl as vm" ng-click="vm.logout()" class="w3-bar-item w3-padding-left">
+          Sign-out</a>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 
@@ -91,8 +91,8 @@
   </div>
 </div> -->
 
-<nav class="navbar w3-mlrngreen">
-  <div class="container w3-center">
+<nav class="w3-mlrngreen">
+  <div class="w3-center">
 
     <div class="w3-bar" style="margin-top:5px;">
 
