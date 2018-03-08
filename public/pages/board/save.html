@@ -1,51 +1,67 @@
 <form>
-    <div class="form-group" ng-if="vm.sub_menu.titleRequired">
-        <label for="noticeTitle">Title</label>
+    <div class="w3-row w3-padding-bottom">
+        <strong>Title</strong>
         <input ng-model="vm.data.title" type="text" class="form-control" id="noticeTitle" placeholder="Title">
     </div>
-    <div class="form-group" ng-if="vm.sub_menu.contentRequired">
-        <label for="noticeContent">Content</label>
+
+    <div class="w3-row w3-padding-bottom">
+        <strong>URL</strong>
+        <input ng-model="vm.data.url" type="text" class="form-control" id="noticeTitle" placeholder="Title">
+    </div>
+
+    <div class="w3-row w3-padding-bottom">
+        <strong>Content</strong>
         <summernote ng-model="vm.data.content" height="300">
             <span style="font-weight: bold;"></span>
         </summernote>
     </div>
 
-    <!-- <div ng-if="vm.sub_menu.imageRequired">
-        <div class="form-group">
-            <label for="boardImage">Images</label>
-            <input id="boardImage" class="form-control" onchange="angular.element(this).scope().imageChanged(this)" type="file" />
-        </div>
-        <div ng-repeat="image in vm.data.images" style="display: inline-block; width:200px; height: 160px;" class="text-right">
-            <div>
-                <button class="btn btn-xs btn-default" ng-click="vm.deleteImage($index)">Delete</button>
-            </div>
-            <img ng-src="{{vm.appContext.apiUrl + image.url}}" alt="" style="width:auto; height:120px; margin-top: 5px;">
-        </div>
-    </div> -->
-
-    <div class="w3-row w3-border-bottom w3-padding-bottom" ng-if="vm.sub_menu.imageRequired">
-        <strong>images</strong>
-        <input id="boardImage" class="form-control" onchange="angular.element(this).scope().imageChanged(this)" type="file" />
-        <div ng-repeat="image in vm.data.images">
+    <div class="w3-row w3-padding-bottom">
+        <strong>Images</strong>
+        <input class="w3-button" style="width:100%" onchange="angular.element(this).scope().imageChanged(this)" type="file" />
+        <!-- <div ng-repeat="image in vm.data.images">
             <img ng-src="{{vm.appContext.apiUrl + image.url}}" alt="" style="height:30px">
             <a ng-href="{{ vm.appContext.apiUrl + image.url }}" target="_blank">Download</a>
-        </div>
+        </div> -->
+        <table class="w3-table-all w3-margin-top">
+            <tr ng-repeat="file in vm.data.images" id="stuff">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ file.originalname }}</td>
+                <td >
+                    <img ng-src="{{vm.appContext.apiUrl + '/files/' + file.filename}}" alt="" style="max-height:25px;">
+                </td>
+                <td>
+                    <button class="w3-button w3-small w3-red" ng-click="vm.deleteFile($index, vm.data.images)">Delete</button>
+                </td>
+            </tr>
+        </table>
     </div>
 
-
-
-    <div ng-if="vm.sub_menu.fileRequired">
-        <div class="form-group">
-            <label for="boardAttach">Files</label>
-            <input id="boardAttach" class="form-control" onchange="angular.element(this).scope().fileChanged(this)" type="file" />
-        </div>
-        <div ng-repeat="file in vm.data.files">
-            {{ file.url }} -
-            <button class="btn btn-xs btn-default" ng-click="vm.deleteFile($index)">Delete</button>
-        </div>
-
+    <div class="w3-row w3-padding-bottom">
+        <strong>Files</strong>
+        <input class="w3-button" style="width:100%" onchange="angular.element(this).scope().fileChanged(this)" type="file" />
+        <table class="w3-table-all w3-margin-top">
+            <tr ng-repeat="file in vm.data.files" id="stuff">
+                <td>{{ $index + 1 }}</td>
+                <td>
+                    <div>{{ file.originalname }}</div>
+                    <div>
+                        {{vm.appContext.apiUrl + '/files/' + file.filename}}
+                        <button class="w3-button w3-small w3-green w3-padding-small" ng-click="vm.copyToClipboard(vm.appContext.apiUrl + '/files/' + file.filename)">Copy link</button>
+                    </div>
+                </td>
+                <td>
+                    <img ng-if="file.thumbnail" ng-src="{{vm.appContext.apiUrl + '/files/' + file.thumbnail}}" alt="" style="max-height:25px;">
+                    <button ng-if="file.thumbnail" ng-click="vm.deleteThumbnail(file)">x</button>
+                    <input ng-if="!file.thumbnail" class="w3-button" onchange="angular.element(this).scope().thumbnailChanged(this)" ng-click="vm.selectedItem = file"
+                        type="file" />
+                </td>
+                <td>
+                    <button class="w3-button w3-small w3-red" ng-click="vm.deleteFile($index, vm.data.files)">Delete</button>
+                </td>
+            </tr>
+        </table>
     </div>
-
 
 </form>
 

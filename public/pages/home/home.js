@@ -4,8 +4,6 @@
 app.controller('home.ctrl', function ($scope, boardService, appContextService) {
 
 
-    console.log('home ctrl')
-
     var vm = this;
     vm.appContext = appContextService.context;
 
@@ -15,114 +13,182 @@ app.controller('home.ctrl', function ($scope, boardService, appContextService) {
     // vm.noWrapSlides = false;
     // vm.active = 0;
 
+    // MEETING OUTCOMES, NOTICE, REPORTS & PAPERS, MLRN ACTIVITIES
 
-    vm.load = function (page) {
+    vm.contents = [
+        [{
+            title: 'MEETING OUTCOMES',
+            main_menu: 'focus',
+            sub_menu: 'meeting_outcomes',
+            sort: -1,
+        }, {
+            title: 'NOTICE',
+            main_menu: 'news',
+            sub_menu: 'notice',
+            sort: 1,
+        }],
+        [{
+            title: 'REPORTS & PAPERS',
+            main_menu: 'resources',
+            sub_menu: 'reports_papers',
+            sort: 1,
+        }, {
+            title: 'MLRN ACTIVITIES',
+            main_menu: 'news',
+            sub_menu: 'activities',
+            sort: 1,
+        }]
+    ];
+
+    vm.contents2 = [{
+        header: 'MEETING OUTCOMES',
+        main_menu: 'focus',
+        sub_menu: 'meeting_outcomes',
+        sort: -1,
+    }, {
+        header: 'NOTICE',
+        main_menu: 'news',
+        sub_menu: 'notice',
+        sort: -1,
+    }, {
+        header: 'REPORTS & PAPERS',
+        main_menu: 'resources',
+        sub_menu: 'reports_papers',
+        sort: -1,
+    }, {
+        header: 'MLRN ACTIVITIES',
+        main_menu: 'news',
+        sub_menu: 'activities',
+        sort: -1,
+    }];
+
+    // MLRN?,  Nexus, Thematic Groups, Contact
+    vm.menus = [{
+            title: 'MLRN?',
+            main_menu: 'about',
+            sub_menu: 'mlrn'
+        },
+        {
+            title: 'Nexus',
+            main_menu: 'focus',
+            sub_menu: 'nexus'
+        },
+        {
+            title: 'Thematic Groups',
+            main_menu: 'focus',
+            sub_menu: 'thematic_groups'
+        },
+        {
+            title: 'Contact',
+            main_menu: 'about',
+            sub_menu: 'contact'
+        },
+    ];
+
+    vm.getContents = function () {
+        vm.contents2.forEach((element, index) => {
+            // console.log('aaa', index, element)
+            boardService.list(element.sub_menu, 1, 4, element.sort, '').then(
+                function (res) {
+                    // console.log('element.title', element.title);
+                    // console.log('res.data', res.data)
+                    // vm.notice = res.data.list[0];
+                    console.log('index', index);
+                    if (res.data.list.length) {
+                        element._id = res.data.list[0]._id;
+                        element.title = res.data.list[0].title;
+                        element.list = res.data.list;
+                        // console.log('res', element)
+                    }
+                    if (index === vm.contents2.length -1) {
+                        // console.log('vm.contents2', vm.contents2)
+                        vm.contents = _.chunk(vm.contents2, 2); 
+                        console.log('vm.contents', vm.contents)
+                        // var data = ["a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9", "a10", "a11", "a12", "a13"];
+                        // var data2 = _.chunk(data, 3); 
+                        // console.log(data2)
+                    }
+
+                },
+                function (err) {
+                    console.log(err);
+                }
+            );
+        });
+    }
+    vm.getContents();
+
+
+
+    vm.getBanners = function (page) {
         vm.currentPage = page;
-        boardService.load('main_banner', 1, 5, '').then(
+        boardService.list('main_banner', 1, 100, -1, '').then(
             function (results) {
                 vm.slides = results.data.list;
                 if (vm.slides.length) {
-                    $('#bannerCarousel').carousel({
-                        interval: 5000
-                    })
+                    // $('#bannerCarousel').carousel({
+                    //     interval: 5000
+                    // })
                 }
             },
             function (err) {
                 console.log(err);
             }
         );
-        boardService.load('link_banner', 1, 100, '').then(
+        boardService.list('link_banner', 1, 100, -1, '').then(
             function (results) {
-                // vm.links = results.data.list;
-                vm.links = [];
-                let count = 5;
-                for (let i =0; i < results.data.list.length; i++) {
-                    if (i % count === 0) {
-                        vm.links.push([]);
-                    }
-                    // console.log('vm.links', vm.links)
-                    vm.links[Math.floor(i/count)].push(results.data.list[i]);
-                }
-                console.log('vm.links', vm.links)
-                if (vm.links.length) {
-                    $('#linkCarousel').carousel({
-                        interval: 5000
-                    })
-                }
+                vm.links = results.data.list;
             },
             function (err) {
                 console.log(err);
             }
         );
 
-        boardService.load('notice', 1, 5, '').then(
-            function (results) {
-                //   console.log(results);
-                vm.notice = results.data.list[0];
+        // boardService.list('notice', 1, 5, '').then(
+        //     function (results) {
+        //         //   console.log(results);
+        //         vm.notice = results.data.list[0];
 
-            },
-            function (err) {
-                console.log(err);
-            }
-        );
+        //     },
+        //     function (err) {
+        //         console.log(err);
+        //     }
+        // );
 
-        boardService.load('reports', 1, 1, '').then(
-            function (results) {
-                //   console.log(results);
-                vm.report = results.data.list[0];
+        // boardService.list('reports', 1, 1, '').then(
+        //     function (results) {
+        //         //   console.log(results);
+        //         vm.report = results.data.list[0];
 
-            },
-            function (err) {
-                console.log(err);
-            }
-        );
+        //     },
+        //     function (err) {
+        //         console.log(err);
+        //     }
+        // );
 
-        boardService.load('issue_brief', 1, 4, '').then(
-            function (results) {
-                //   console.log(results);
-                vm.issue_brief = results.data.list[0];
+        // boardService.list('issue_brief', 1, 4, '').then(
+        //     function (results) {
+        //         //   console.log(results);
+        //         vm.issue_brief = results.data.list[0];
 
-            },
-            function (err) {
-                console.log(err);
-            }
-        );
+        //     },
+        //     function (err) {
+        //         console.log(err);
+        //     }
+        // );
 
-        boardService.load('activities', 1, 4, '').then(
-            function (results) {
-                //   console.log(results);
-                vm.activity = results.data.list[0];
+        // boardService.list('activities', 1, 4, '').then(
+        //     function (results) {
+        //         //   console.log(results);
+        //         vm.activity = results.data.list[0];
 
-            },
-            function (err) {
-                console.log(err);
-            }
-        );
+        //     },
+        //     function (err) {
+        //         console.log(err);
+        //     }
+        // );
     }
+    vm.getBanners(vm.currentPage);
 
-    // initial load & reset
-    vm.load(vm.currentPage);
-
-    // $('#media').carousel({
-    //     // pause: true,
-    //     interval: 50000,
-    //     // interval: false,
-    // });
-
-
-
-    $(function () {
-        // $('[data-toggle="tooltip"]').tooltip()
-
-
-        // $('#myCarousel').on('slide', function (e) {
-        //     var slideFrom = $(this).find('.active').index();
-        //     var slideTo = $(e.relatedTarget).index();
-        //     console.log(slideFrom + ' => ' + slideTo);
-        // });
-
-
-
-    })
 
 })

@@ -26,6 +26,9 @@ mongoClient.connect(config.connectionString, function (err, database) {
 
 exports.list = function (req, res) {
 
+    // let sort;
+    // req.query.sort === 'asc' ? sort = 1 : sort = -1;
+
     async.waterfall([
         function (callback) {
             db.collection('board').count({
@@ -49,7 +52,7 @@ exports.list = function (req, res) {
                 }]
             })
                 .sort({
-                    date: -1
+                    date: Number(req.query.sort)
                 }).skip(req.query.rows * (req.query.page - 1)).limit(Number(req.query.rows)).toArray(function (err, docs) {
                     res.send({ count: result, list: docs });
                 })
@@ -60,7 +63,7 @@ exports.list = function (req, res) {
                 }]
             })
                 .sort({
-                    date: -1
+                    date: Number(req.query.sort)
                 }).skip(req.query.rows * (req.query.page - 1)).limit(Number(req.query.rows)).toArray(function (err, docs) {
                     res.send({count:result, list: docs});
                 })

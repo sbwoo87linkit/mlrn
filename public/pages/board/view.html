@@ -1,74 +1,66 @@
-<div class="w3-row w3-border-bottom" ng-if="vm.sub_menu.titleRequired">
-    <strong>Title</strong>
-    <p>{{vm.item.title}}</p>
-</div>
+<table class="w3-table w3-bordered">
+    <tr>
+        <th style="width:15%">Title</th>
+        <td style="width:85%">{{vm.item.title}}</td>
+    </tr>
+    <tr>
+        <th>Date</th>
+        <td>{{vm.item.date | date : "yyyy.MM.dd HH:mm"}}</td>
+    </tr>
+    <tr>
+        <th>Content</th>
+        <td>
+            <p ng-bind-html="vm.item.content" style="white-space: pre-line; font-size: small; margin-top: 0px">
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <th>Images</th>
+        <td>
+            <!-- <div ng-repeat="image in vm.item.images">
+                <img ng-src="{{vm.appContext.apiUrl + image.url}}" alt="" style="height:30px">
+                <a ng-href="{{ vm.appContext.apiUrl + image.url }}" target="_blank">Download</a>
+            </div> -->
+            <table class="w3-table w3-bordered">
+                <tr ng-repeat="file in vm.item.images">
+                    <td style="width:10%">
+                        <img ng-src="{{vm.appContext.apiUrl + '/files/' + file.filename}}" alt="" style="max-height:25px;">
+                    </td>
+                    <td style="width:80%">{{file.originalname}}</td>
+                    <td style="width:10%">
+                        <a class="w3-button w3-small w3-padding-small" ng-href="{{ vm.appContext.apiUrl + '/files/' + file.filename }}" download="download">Download
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <th>Files</th>
+        <td>
+            <table class="w3-table w3-bordered">
+                <tr ng-repeat="file in vm.item.files">
+                    <td style="width:10%">
+                        <img ng-if="file.thumbnail" ng-src="{{vm.appContext.apiUrl + '/files/' + file.thumbnail}}" alt="" style="max-height:25px;">
+                    </td>
+                    <td style="width:80%">{{file.originalname}}</td>
+                    <td style="width:10%">
+                        <a class="w3-button w3-small w3-padding-small" ng-href="{{ vm.appContext.apiUrl + '/files/' + file.filename }}"
+                            download="download">Download
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
 
-<div class="w3-row w3-border-bottom" ng-if="vm.sub_menu.contentRequired">
-    <strong>Content</strong>
-    
-    <!-- <p ng-if="!vm.sub_menu.htmlEdit">{{vm.item.content}}</p>
-
-    <p ng-if="vm.sub_menu.htmlEdit" ng-bind-html="vm.item.content" style="white-space: pre-line; font-size: small; margin-top: 0px">
-    </p> -->
-
-    <p ng-bind-html="vm.item.content" style="white-space: pre-line; font-size: small; margin-top: 0px">
-    </p>
-
-
-</div>
-
-<div class="w3-row w3-border-bottom">
-    <strong>Date</strong>
-    <p>{{vm.item.date | date : "yyyy.MM.dd HH:mm"}}</p>
-</div>
-
-<div class="w3-row w3-border-bottom w3-padding-bottom" ng-if="vm.sub_menu.imageRequired">
-    <strong>images</strong>
-    <div ng-repeat="image in vm.item.images">
-        <img ng-src="{{vm.appContext.apiUrl + image.url}}" alt="" style="height:30px">
-        <a ng-href="{{ vm.appContext.apiUrl + image.url }}" target="_blank">Download</a>
-    </div>
-</div>
-
-
-<div class="row bottom-line" ng-if="vm.item.files.length">
-    <div class="col-md-2">
-        <strong>Files </strong>
-    </div>
-    <div class="col-md-10">
-        <div ng-repeat="file in vm.item.files"> {{ file.url }} -
-            <a ng-href="{{ vm.appContext.apiUrl + file.url }}" target="_blank">Download</a>
-        </div>
-    </div>
-</div>
-
+</table>
 
 <div class="w3-right-align w3-padding">
     <button class="w3-button" ui-sref="board.list()">List</button>
-    <button class="w3-button w3-green" ng-if="vm.appContext.user.role === 'admin'" ui-sref="board.save( {'articleType':$stateParams.articleType, 'articleId':$stateParams.articleId })">Edit
+    <button class="w3-button" ng-if="vm.appContext.user.role === 'admin'" ui-sref="board.save( {'articleType':$stateParams.articleType, 'articleId':$stateParams.articleId })">Edit
     </button>
     <button class="w3-button w3-red" ng-if="vm.appContext.user.role === 'admin'" ng-click="vm.delete()">Delete</button>
 </div>
-
-<!-- <div disqus="id"></div> -->
-
-<!-- <div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-image">
-
-
-            <div class="modal-header bg-primary">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">확인</h4>
-            </div>
-            <div class="modal-body">
-                <h4>삭제하시겠습니까?</h4>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="vm.delete()">삭제</button>
-            </div>
-
-        </div>
-    </div>
-</div> -->

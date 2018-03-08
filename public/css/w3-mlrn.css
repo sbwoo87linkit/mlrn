@@ -29,3 +29,10 @@
       opacity: 0.5;
   }
   
+  .w3-mlrn-bar-item-before:before {
+      content: "|";
+      margin: 0 0 0 0px;
+      color: #558139;
+      opacity: 0.9;
+      padding-right: 10px;
+  }

@@ -33,15 +33,23 @@ app.controller('board.list.ctrl', function ($scope, $rootScope, $window, $stateP
 
     vm.load = function (page) {
 
-        boardService.load($stateParams.sub_menu, page, vm.pagination.itemsPerPage, vm.data.searchText).then(
+        // let sort = 
+        boardService.list($stateParams.sub_menu, page, vm.pagination.itemsPerPage, vm.sub_menu.isAscending ? 1 : -1, vm.data.searchText).then(
             function (res) {
                 // console.log('res', res);
                 vm.items = res.data.list;
                 vm.item = vm.items[0];
-                vm.tabId = vm.item._id;
+                if (vm.item) {
+                    vm.tabId = vm.item._id;
+                }
                 // vm.items = res.data;
                 // console.log('res....', res)
                 vm.pagination.totalItems = res.data.count;
+                if ($stateParams.sub_menu === 'related_links') {
+                    console.log('related_links......', $scope.main.relatedLinks);
+                    $scope.main.relatedLinks = vm.items;
+                    console.log('related_links......', $scope.main.relatedLinks);
+                }
             },
             function (err) {
                 console.log(err);
@@ -54,7 +62,7 @@ app.controller('board.list.ctrl', function ($scope, $rootScope, $window, $stateP
 
     vm.pageChanged = function () {
         console.log('Page changed to: ' + vm.pagination.currentPage);
-        // vm.load(vm.pagination.currentPage);
+        vm.load(vm.pagination.currentPage);
     };
 
     vm.search = function () {
@@ -91,7 +99,7 @@ app.controller('board.list.ctrl', function ($scope, $rootScope, $window, $stateP
             useBootstrap: false,
             title: 'Confirm',
             content: 'Delete it?',
-            scope: vm,
+            // scope: vm,
             buttons: {
                 confirm: {
                     text: 'Delete',

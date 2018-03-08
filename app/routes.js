@@ -19,10 +19,16 @@ var storage = multer.diskStorage({
         cb(null, './uploads/')
     },
     filename: function (req, file, cb) {
-        var fileName = file.originalname.substr(0, file.originalname.lastIndexOf('.'));
-        var fileExt = file.originalname.substr(file.originalname.lastIndexOf('.'));
+        // var fileName = file.originalname.substr(0, file.originalname.lastIndexOf('.'));
+        // console.log('file.originalname', file.originalname);
+        // var fileExt = file.originalname.substr(file.originalname.lastIndexOf('.'));
 
-        cb(null, fileName + '-' + Date.now() + fileExt);
+        // cb(null, fileName + '-' + Date.now() + fileExt);
+
+        var uuid = require('uuid');
+        var filename = uuid.v4() + file.originalname.substr(file.originalname.lastIndexOf('.'))
+        cb(null, filename);
+
     }
 });
 
@@ -31,8 +37,9 @@ module.exports = function (app) {
 
     var upload = multer({ storage: storage });
     app.post('/api/files', upload.single('file'), function (req, res) {
-        // console.log('zzzzzz', req.file);
-        res.send(req.file.filename)
+        console.log('zzzzzz', req.file);
+        // res.send(req.file.filename)
+        res.json(req.file)
     });
 
 

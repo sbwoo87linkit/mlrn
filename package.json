@@ -4,7 +4,7 @@
     "description": "An In memory todo for Logged in and not Logged in users",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js | browser-sync start --server ./public --files='**/*'" 
+        "start": "node server.js | browser-sync start --server ./public --files='**/*'"
     },
     "repository": {
         "type": "git",
@@ -38,6 +38,7 @@
         "morgan": "^1.2.3",
         "multer": "^1.2.0",
         "promise": "^7.1.1",
+        "uuid": "^3.2.1",
         "w3-css": "^4.0.4"
     }
 }

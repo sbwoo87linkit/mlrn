@@ -1,3 +1,4 @@
+<!-- main banner -->
 <div style="height: 360px; overflow:hidden" id="bannerCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
     <ol class="carousel-indicators">
         <li class="w3-circle" ng-repeat="slide in vm.slides track by $index" data-target="#bannerCarousel" data-slide-to="{{$index}}"
@@ -8,10 +9,10 @@
         <div class="item" ng-repeat="slide in vm.slides track by $index" ng-class="{active:!$index}">
             <div class="w3-row w3-mlrngreen">
                 <div class="w3-col m9">
-                    <img ng-src="{{vm.appContext.apiUrl + slide.images[0].url}}" alt="slide" style="width:100%;">
+                    <img ng-src="{{vm.appContext.apiUrl + '/files/' + slide.images[0].filename}}" alt="slide" style="width:100%;">
                 </div>
                 <div class="w3-col m3 w3-padding-large">
-                    {{slide.title}}
+                    <h3>{{slide.title}}</h3>
                 </div>
             </div>
         </div>
@@ -28,183 +29,64 @@
 
 </div>
 
-<div class="" ng-if="true">
-
-    <div class="">
-        <div>
-
-        </div>
-    </div>
-
-</div>
-
+<!-- contents links -->
 <table class="w3-margin-top" style="width:100%">
-    <tr>
-        <td class="w3-border w3-padding" style="width:50%; vertical-align:top">
+    <tr ng-repeat="row in vm.contents">
+        <td ng-repeat="cell in row" class="w3-border w3-padding" style="width:50%; vertical-align:top">
             <div>
                 <div class="w3-right">
-                    <a ui-sref="board.list({'main_menu':'resources', 'sub_menu':'reports'})">
+                    <a ui-sref="board.list({'main_menu':cell.main_menu, 'sub_menu':cell.sub_menu})">
                         <i class="far fa-plus-square"></i>
                     </a>
                 </div>
                 <div>
-                    <strong>REPORTS</strong>
+                    <strong>{{cell.header}}</strong>
                 </div>
             </div>
-            <div style="height: 2em;line-height: 1em;overflow: hidden;">
-                <a href="" ui-sref="board.view({'main_menu':'resources', 'sub_menu':'reports', 'articleId': vm.report._id})">{{vm.report.title}}</a>
+            <!-- <div style="height: 2em;line-height: 1em;overflow: hidden;">
+                <a href="" ui-sref="board.view({'main_menu':cell.main_menu, 'sub_menu':cell.sub_menu, 'articleId': cell._id})">{{cell.title}}</a>
+            </div> -->
+
+            <div ng-repeat="item in cell.list" style="overflow: hidden;">
+                <a href="" ui-sref="board.view({'main_menu':cell.main_menu, 'sub_menu':cell.sub_menu, 'articleId': item._id})">{{item.title}}</a>
             </div>
-        </td>
-        <td class="w3-border w3-padding" style="width:50%; vertical-align:top">
-            <div>
-                <div class="w3-right">
-                    <a ui-sref="board.list({'main_menu':'news', 'sub_menu':'notice'})">
-                        <i class="far fa-plus-square"></i>
-                    </a>
-                </div>
-                <div>
-                    <strong>NOTICE</strong>
-                </div>
-            </div>
-            <div style="height: 2em;line-height: 1em;overflow: hidden;">
-                <a href="" ui-sref="board.view({'main_menu':'news', 'sub_menu':'notice', 'articleId': vm.notice._id})">{{vm.notice.title}}</a>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="w3-border w3-padding" style="width:50%; vertical-align:top">
-            <div>
-                <div class="w3-right">
-                    <a ui-sref="board.list({'main_menu':'mlr_info', 'sub_menu':'issue_brief'})">
-                        <i class="far fa-plus-square"></i>
-                    </a>
-                </div>
-                <div>
-                    <strong>ISSUE BRIEF</strong>
-                </div>
-            </div>
-            <div style="height: 2em;line-height: 1em;overflow: hidden;">
-                <a href="" ui-sref="board.view({'main_menu':'mlr_info', 'sub_menu':'issue_brief', 'articleId': vm.issue_brief._id})">{{vm.issue_brief.title}}</a>
-            </div>
-        </td>
-        <td class="w3-border w3-padding" style="width:50%; vertical-align:top">
-            <div>
-                <div class="w3-right">
-                    <a ui-sref="board.list({'main_menu':'news', 'sub_menu':'activities'})">
-                        <i class="far fa-plus-square"></i>
-                    </a>
-                </div>
-                <div>
-                    <strong>MLRN ACTIVITIES</strong>
-                </div>
-            </div>
-            <div style="height: 2em;line-height: 1em;overflow: hidden;">
-                <a href="" ui-sref="board.view({'main_menu':'news', 'sub_menu':'activities', 'articleId': vm.activity._id})">{{vm.activity.title}}</a>
-            </div>
+
+            <!-- {{cell.list}} -->
+
         </td>
     </tr>
 </table>
 
-<!-- MLRN / FWE Nexus/ MLR Info/ Contact -->
+<!-- menu links -->
 <table class="w3-margin-top" style="width:100%">
     <tr>
-        <td ui-sref="board.page({main_menu: 'about',sub_menu:'mlrn'})" class="w3-mlrngreen w3-center" style="padding:4px; cursor:pointer; width:25%;border:2px solid #fff">
-            MLRN
-        </td>
-        <td ui-sref="board.page({main_menu: 'focus',sub_menu:'wfe_nexus'})" class="w3-mlrngreen w3-center" style="padding:4px; cursor:pointer; width:25%;border:2px solid #fff">
-            FWE Nexus
-        </td>
-        <td ui-sref="board.page({main_menu: 'mlr_info',sub_menu:'mlr_info'})" class="w3-mlrngreen w3-center" style="padding:4px; cursor:pointer; width:25%;border:2px solid #fff">
-            MLR Info
-        </td>
-        <td ui-sref="board.page({main_menu: 'about',sub_menu:'contact'})" class="w3-mlrngreen w3-center" style="padding:4px; cursor:pointer; width:25%;border:2px solid #fff">
-            Contact
+        <td ng-repeat="item in vm.menus" ui-sref="board.page({main_menu: item.main_menu,sub_menu:item.sub_menu})" 
+        class="w3-mlrngreen w3-center" style="padding:10px; cursor:pointer; width:25%;border:2px solid #fff">
+            {{item.title}}
         </td>
     </tr>
 </table>
 
-<!-- <div class='row' style="margin-top: 10px; margin-bottom: 10px">
-    <div class='col-md-12'>
-        <div class="link-wrapper">
-            <a class="site-link" href="" target="_blank" bs-tooltip data-toggle="tooltip" data-placement="top" title="DAK">
-                <img class="logo" src="images/logo/dak.png" alt="">
-            </a>
-            <a class="site-link" href="" target="_blank" bs-tooltip data-toggle="tooltip" data-placement="top" title="EDCF">
-                <img class="logo" src="images/logo/edcf.png" alt="">
-            </a>
-            <a class="site-link" href="" target="_blank" bs-tooltip data-toggle="tooltip" data-placement="top" title="National index">
-                <img class="logo" src="images/logo/naraindex.png" alt="">
-            </a>
-            <a class="site-link" href="" target="_blank" bs-tooltip data-toggle="tooltip" data-placement="top" title="IBRD-IDA">
-                <img class="logo" src="images/logo/worldbank.png" alt="">
-            </a>
-            <a class="site-link" href="" target="_blank" bs-tooltip data-toggle="tooltip" data-placement="top" title="USAID">
-                <img class="logo" src="images/logo/usaid.png" alt="">
-            </a>
-        </div>
-    </div>
-</div>
- -->
 
-<!-- <div style="overflow:hidden" id="linkCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
-    <div class="carousel-inner">
-        <div class="item" ng-repeat="rows in vm.links track by $index" ng-class="{active:!$index}">
-            <table style="height:100%; width: 100%">
-                <tr>
-                    <td ng-repeat="item in rows" class="w3-pink w3-border" style="width:20%; padding: 10px 20px">
-                        <img ng-src="{{vm.appContext.apiUrl + item.images[0].url}}" alt="slide" style="width:100%; max-height:40px">
-                    </td>
-                </tr>
-            </table>
-            <div class="w3-row">
-                <div class="w3-col w3-border w3-border-gray" style="width:20%; padding: 0   10px" ng-repeat="item in rows">
-                    <img ng-src="{{vm.appContext.apiUrl + item.images[0].url}}" alt="slide" style="max-width: 100%;max-height:40px;">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <a class="left carousel-control" data-target="#linkCarousel" data-slide="prev" style="cursor:pointer">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" data-target="#linkCarousel" data-slide="next" style="cursor:pointer">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-        <span class="sr-only">Next</span>
-    </a>
-
-</div> -->
-
-
+<!-- sub banner (related links) -->
 <div class="w3-row w3-margin-top">
     <div class="w3-col" style="width:5%">
-        <button ng-disabled="true" ng-click="vm.next(-1)" class="w3-button">&lang;</button>
-        <!-- &nbsp; -->
+        <button ng-disabled="true" ng-click="vm.next(-1)" class="w3-button w3-padding-small">&lang;</button>
     </div>
     <div class="w3-col" style="width:90%">
         <div class="w3-row-padding">
-            <div class="w3-col w3-center" style="width:16.6%">
-                <img class="logo" src="images/logo/dak.png" alt="" style="width:100%; max-height:60px; padding: 6px; border: 1px solid #ccc">
-            </div>
-            <div class="w3-col w3-center" style="width:16.6%">
-                <img class="logo" src="images/logo/edcf.png" alt="" style="width:100%; max-height:60px; padding: 6px; border: 1px solid #ccc">
-            </div>
-            <div class="w3-col w3-center" style="width:16.6%">
-                <img class="logo" src="images/logo/worldbank.png" alt="" style="width:100%; max-height:60px; padding: 6px; border: 1px solid #ccc">
-            </div>
-            <div class="w3-col w3-center" style="width:16.6%">
-                <img class="logo" src="images/logo/naraindex.png" alt="" style="width:100%; max-height:60px; padding: 6px; border: 1px solid #ccc">
-            </div>
-            <div class="w3-col w3-center" style="width:16.6%">
-                <img class="logo" src="images/logo/usaid.png" alt="" style="width:100%; max-height:60px; padding: 6px; border: 1px solid #ccc">
-            </div>
-            <div class="w3-col w3-center" style="width:16.6%">
-                <img class="logo" src="images/logo/dak.png" alt="" style="width:100%; max-height:60px; padding: 6px; border: 1px solid #ccc">
+            <div ng-repeat="item in vm.links"
+             class="w3-col w3-center" style="width:16.6%; height:60px; padding:4px; ">
+                <div style="border: 1px solid #ccc">
+                    <a ng-href="{{item.url}}" target="_blank">
+                        <img class="w3-grayscale-max" ng-src="{{vm.appContext.apiUrl + '/files/' + item.images[0].filename}}" alt="" style="width:100%; max-height:60px; padding: 6px">
+                    </a>
+                </div>
             </div>
         </div>
 
     </div>
     <div class="w3-col" style="width:5%">
-        <button ng-click="vm.next(-1)" class="w3-button w3-right">&rang;</button>
+        <button ng-click="vm.next(-1)" class="w3-button w3-padding-small w3-right">&rang;</button>
     </div>
 </div>

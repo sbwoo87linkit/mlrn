@@ -5,8 +5,8 @@ app.controller('signin.ctrl', function ($scope, $window, $rootScope, $state, $st
 
     vm.data = {
         // email:"sdsn_korea@korea.ac.kr",
-        email: "mlrn_korea@korea.ac.kr",
-        password: "admin1234"
+        email: config.userId,
+        password: config.password
     }
 
     vm.login = function () {
@@ -33,7 +33,7 @@ app.controller('signin.ctrl', function ($scope, $window, $rootScope, $state, $st
                 console.log('login success', vm.appContext.menuArray, config.menuArray);
 
                 // window.history.back();
-                $state.go('home', {}, { reload: true});
+                $state.go('home');
 
             },
             function (err) {
@@ -53,7 +53,8 @@ app.controller('signin.ctrl', function ($scope, $window, $rootScope, $state, $st
         vm.appContext.menuArray = angular.copy(config.menuArray); 
         _.remove(vm.appContext.menuArray, {adminRequired : true});
         // toastr.success("You have logged out.");
-        $state.go('signin');
+        // $state.go('signin');
+        $state.go('home');
     }
 
 

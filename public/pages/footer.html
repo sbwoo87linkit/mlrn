@@ -43,24 +43,8 @@
     }
 </style>
 
-<!-- <div class="w3-content w3-margin-top w3-pink" style="max-width:1100px;margin-top:20px;margin-bottom:0px">
-    <div class="w3-panel">
-        <a href="" ui-sref="home" style="text-decoration:none">
-            <span class="w3-text-mlrngreen" style="font-size:1.4em;font-weight:400">{{vm.appContext.appTitle}}</span>
-        </a>
-        <div class="w3-right">
 
-        </div>
-    </div>
-</div> -->
-
-
-
-<!-- <div class="w3-container w3-mlrngreen">
-    footer
-</div> -->
-
-<div class="w3-content"  style="max-width:1100px;margin-top:20px;margin-bottom:0px">
+<div class="w3-content"  style="max-width:990px;margin-top:20px;margin-bottom:0px">
     <div class="w3-container">
         <!-- <hr/> -->
         <div class="w3-margin-top w3-padding-16 w3-border-top ">
@@ -79,7 +63,7 @@
             </div>
             <div class="w3-right">
 
-                <!-- <div class="dropup">
+                <div class="dropup">
                     <div style="width:200px" class="w3-white w3-border dropdown-toggle" data-toggle="dropdown">
                         <div class="w3-right w3-border-left w3-center w3-padding">
                             <i class="fas fa-caret-down"></i>
@@ -89,21 +73,19 @@
                         </div>
                     </div>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="width:100%">
-                        <li>
-                            <a href="http://ojeri.korea.ac.kr/" target="_blank">OJERI</a>
+                        <li ng-repeat="item in main.relatedLinks">
+                            <a ng-href="{{item.url}}" target="_blank">{{item.title}}</a>
                         </li>
                     </ul>
-                </div> -->
-
-
-                <div class="dropup">
-                    <button class="dropbtn" style="width:250px;">Related Links<i style="float:right" class="fas fa-angle-up"></i></button>
-                    <div class="dropup-content w3-hover-gray" style="width:100%">
-                        <a href="http://ojeri.korea.ac.kr/" target="_blank"> <strong>OJERI</strong><br> OJeong Eco-Resilience Institute</a>
-                        <!-- <a href="#">Link 2</a>
-                        <a href="#">Link 3</a> -->
-                    </div>
                 </div>
+
+
+                <!-- <div class="dropup">
+                    <button class="dropbtn" style="width:250px;">Related Links<i style="float:right" class="fas fa-angle-up"></i></button>
+                    <div class="dropup-content w3-hover-mlrngreen" style="width:100%">
+                        <a href="http://ojeri.korea.ac.kr/" target="_blank"> <strong>OJERI</strong><br> OJeong Eco-Resilience Institute</a>
+                    </div>
+                </div> -->
 
 
             </div>
@@ -113,3 +95,5 @@
 
     </div>
 </div>
+
+{{main.relatedLinks}}

@@ -4,9 +4,9 @@ app.factory('boardService', function ($http, config) {
 
     factory.notices = []
 
-    factory.load = function (articleType, page, pageSize, searchText) {
+    factory.list = function (articleType, page, pageSize, sort, searchText) {
         // console.log("articleType :::: " + articleType)
-        return $http.get(config.apiUrl + '/board?page=' + page + '&rows=' + pageSize + '&articleType=' + articleType + '&searchText=' + searchText);
+        return $http.get(config.apiUrl + '/board?page=' + page + '&rows=' + pageSize + '&sort=' + sort + '&articleType=' + articleType + '&searchText=' + searchText);
     }
 
     factory.getPage = function (articleType) {
