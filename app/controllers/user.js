@@ -2,8 +2,8 @@ var config = require('../config');
 var mongoClient = require('mongodb').MongoClient;
 var bcrypt = require("bcrypt-nodejs");
 var jwt     = require('jsonwebtoken');
-var co = require('co');
-var model = require('../../models/model');
+// var co = require('co');
+// var model = require('../../models/model');
 var async = require('async');
 
 
@@ -26,29 +26,66 @@ mongoClient.connect(config.connectionString, function (err, database) {
 
 
 
+// exports.login = function (req, res) {
+//       co(function*(){
+//         var args = {email : req.body.email};
+//         var result=yield model.findOneDoc(args, db.collection('users'));
+//           if (!bcrypt.compareSync(req.body.password, result.password) ) {
+//               return res.status(401).send("Autheication failed");
+//           }
+//           delete result.password;
+//           var lastlogin = yield model.partialUpdate(args,{$set:{last_login : new Date()}},db.collection('users'));
+//           if(lastlogin.n===1){
+//             var token = createToken(result);
+//             console.log(token);
+//           res.status(201).send({
+//               id_token: token
+//           });
+//         }
+//       }).catch(function(err){
+//         console.log(err);
+//         console.log(err.stack);
+//         res.status(500).end();
+//       });
+
+// };
+
 exports.login = function (req, res) {
-      co(function*(){
-        var args = {email : req.body.email};
-        var result=yield model.findOneDoc(args, db.collection('users'));
-          if (!bcrypt.compareSync(req.body.password, result.password) ) {
-              return res.status(401).send("Autheication failed");
-          }
-          delete result.password;
-          var lastlogin = yield model.partialUpdate(args,{$set:{last_login : new Date()}},db.collection('users'));
-          if(lastlogin.n===1){
-            var token = createToken(result);
-            console.log(token);
-          res.status(201).send({
-              id_token: token
-          });
-        }
-      }).catch(function(err){
-        console.log(err);
-        console.log(err.stack);
-        res.status(500).end();
-      });
+  // co(function* () {
+  //   var args = { email: req.body.email };
+  //   var result = yield model.findOneDoc(args, db.collection('users'));
+  //   if (!bcrypt.compareSync(req.body.password, result.password)) {
+  //     return res.status(401).send("Autheication failed");
+  //   }
+  //   delete result.password;
+  //   var lastlogin = yield model.partialUpdate(args, { $set: { last_login: new Date() } }, db.collection('users'));
+  //   if (lastlogin.n === 1) {
+  //     var token = createToken(result);
+  //     console.log(token);
+  //     res.status(201).send({
+  //       id_token: token
+  //     });
+  //   }
+  // }).catch(function (err) {
+  //   console.log(err);
+  //   console.log(err.stack);
+  //   res.status(500).end();
+  // });
+
+  db.collection('users').findOne({ email: req.body.email }, function (err, doc) {
+    if (!doc || !bcrypt.compareSync(req.body.password, doc.password)) {
+      res.status(401).send("Autheication failed");
+    }
+    var token = createToken(doc);
+    console.log(token);
+    res.status(201).send({
+      id_token: token
+    });
+  })
+
 
 };
+
 
 exports.signup = function (req, res) {
 
@@ -58,7 +95,7 @@ exports.signup = function (req, res) {
 
   // console.log('Program Start');
 
-  var async = require('async');
+  // var async = require('async');
   async.waterfall([
     function (callback) {
       // console.log('First Step --> ');

@@ -1,14 +1,15 @@
 var config = require('../config');
 var mongoClient = require('mongodb').MongoClient;
 //var bcrypt = require("bcrypt-nodejs");
-var jwt = require('express-jwt');
-var co = require('co');
+// var jwt = require('express-jwt');
+// var co = require('co');
 
 // import series from 'async/series';
 // var series
+
 var async = require('async');
 
-var model = require('../../models/model');
+// var model = require('../../models/model');
 var ObjectID = require('mongodb').ObjectID;
 
 var db;

@@ -8,6 +8,8 @@ var jwtCheck = jwt({
 
 var board = require('./controllers/board.js');
 var user = require('./controllers/user.js');
+var header = require('./controllers/header.js');
+
 // var restapi = require('./controllers/restapi.js');
 // var admin = require('./controllers/admin.js');
 // var manager = require('./controllers/manager.js');
@@ -77,6 +79,10 @@ module.exports = function (app) {
     app.post('/board', board.create);
     app.put('/board/:sid', board.update);
     app.delete('/board/:sid', board.delete);
+
+    app.get('/header/:articleType', header.get);
+    app.put('/header', header.update);
+    app.delete('/header/:sid', header.delete);
 
     app.post('/user/login', user.login);
     app.post('/user/signup', user.signup);

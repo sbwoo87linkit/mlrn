@@ -4,7 +4,8 @@
     "description": "An In memory todo for Logged in and not Logged in users",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js | browser-sync start --server ./public --files='**/*'"
+        "start": "node server.js",
+        "start-vue": "node server.js | browser-sync start --server ./frontend_vue/public --files='**/*'"
     },
     "repository": {
         "type": "git",
